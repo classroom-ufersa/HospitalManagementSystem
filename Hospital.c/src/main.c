@@ -4,6 +4,14 @@
 int main(void)
 {
     int controle = 0;
+    FILE *arquivo;
+    char caminho[] = "C:\\Users\\jhoan\\Desktop\\VScode\\GitHub\\HospitalManagementSystem\\Hospital.c\\data\\pacientes.txt"; // caminho do arquivo txt(Varia de pc para pc)
+    arquivo = fopen(caminho, "r");
+    if (arquivo == NULL)
+    {
+        printf("Erro ao abrir arquivo!");
+        exit(1);
+    }
     printf("+----------------------------------------------------------------+\n"
            "|        Bem-vindo ao Programa de Gerenciamento Hospitalar       |\n"
            "|                                                                |\n"
