@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "hospital.c"
 
 int main(void)
 {
@@ -12,6 +13,7 @@ int main(void)
         printf("Erro ao abrir arquivo!");
         exit(1);
     }
+    
     printf("+----------------------------------------------------------------+\n"
            "|        Bem-vindo ao Programa de Gerenciamento Hospitalar       |\n"
            "|                                                                |\n"

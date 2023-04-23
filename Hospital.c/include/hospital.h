@@ -1,4 +1,4 @@
-//TAD: PACIENTES
+//TAD: Hospital
 
 typedef union document Document;
 typedef struct pacientes Pacientes;
