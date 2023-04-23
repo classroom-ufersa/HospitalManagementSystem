@@ -5,8 +5,19 @@ typedef struct pacientes Pacientes;
 typedef struct listapacientes Listapacientes;
 typedef struct hospital Hospital;
 
-// cadastra no arquivo
-FILE *cadastra_paciente(FILE *arquivo, char *caminho);
+// adiciona pacientes ao arquivo;
+FILE *add_arquivo(Hospital *h, char *caminho);
 
-//cria a lista duplamente encadeada
-Hospital *lista_cria(Hospital *h);
+// cadastra o paciente
+Hospital *cadastra_paciente(Hospital *h, int *qnt);
+
+// adiciona na lista
+void lista_add(Hospital *h, Pacientes paciente);
+
+// cria a lista duplamente encadeada
+Hospital *lista_cria(void);
+
+// imprime os pacientes
+void lista_imprime(Hospital *h);
+
+void ler_arquivo(Hospital *h, char *caminho, int *qnt);

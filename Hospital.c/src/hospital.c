@@ -1,6 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <stdio.h>  //funções basicas da linguagem c
+#include <stdlib.h> //para fazer alocação dinamica
+#include <string.h> //para usar strings
+#include <math.h>   //operações algebricas
+#include <time.h>   //Tempo de execução
+#include <ctype.h>  //manipulação de caracteres
 #include "C:\Users\jhoan\Desktop\VScode\GitHub\HospitalManagementSystem\Hospital.c\include\hospital.h"
 
 #define MaxNome 100
@@ -37,16 +40,15 @@ struct hospital
     Listapacientes *lista;
 };
 
-Hospital *lista_cria(Hospital *h)
+Hospital *lista_cria(void)
 {
-    h = (Hospital *)malloc(sizeof(Hospital));
+    Hospital *h = (Hospital *)malloc(sizeof(Hospital));
     h->lista = (Listapacientes *)malloc(sizeof(Listapacientes));
     if (h->lista == NULL)
     {
         printf("Erro: memoria insuficiente.\n");
         exit(1);
     }
-    h->lista = NULL;
     h->lista->next = NULL;
     h->lista->prev = NULL;
     h->leitos = Leitos;
@@ -54,33 +56,60 @@ Hospital *lista_cria(Hospital *h)
     strcpy(h->nome, "HealCare");
     return h;
 }
+void lista_add(Hospital *h, Pacientes paciente)
+{
+    // Encontrar a posição correta para inserir o novo paciente
+    Listapacientes *p = h->lista;
+    while (p->next != NULL && strcmp(p->next->pacientes->nome, paciente.nome) < 0)
+    {
+        p = p->next;
+    }
 
-FILE *cadastra_paciente(FILE *arquivo, char *caminho)
+    // Criar um novo nó para o novo paciente
+    Listapacientes *novo_no = (Listapacientes *)malloc(sizeof(Listapacientes));
+    if (novo_no == NULL)
+    {
+        printf("Erro: memoria insuficiente.\n");
+        exit(1);
+    }
+    novo_no->pacientes = (Pacientes *)malloc(sizeof(Pacientes));
+    if (novo_no->pacientes == NULL)
+    {
+        printf("Erro: memoria insuficiente.\n");
+        exit(1);
+    }
+    *novo_no->pacientes = paciente;
+
+    // Inserir o novo paciente na posição correta
+    novo_no->next = p->next;
+    novo_no->prev = p;
+    if (p->next != NULL)
+    {
+        p->next->prev = novo_no;
+    }
+    p->next = novo_no;
+}
+
+Hospital *cadastra_paciente(Hospital *h, int *qnt)
 {
     Pacientes paciente;
     int i;
     char opcao_documento;
-
-    // Abrir o arquivo para escrita
-    arquivo = fopen(caminho, "a");
-
-    // Verificar se o arquivo foi aberto com sucesso
-    if (arquivo == NULL)
+    if ((*qnt) == Leitos)
     {
-        printf("Erro ao abrir o arquivo.\n");
+        printf("Capacidade máxima atingida!\n");
         exit(1);
     }
-
     printf("Digite o nome do paciente: ");
     scanf(" %[^\n]s", paciente.nome);
     // Formatando nome
-    int tamanhodonome = strlen(paciente.nome);
-    paciente.nome[0] = toupper(paciente.nome[0]); // convertendo o primeiro caractere para maiusculo
-    // Percorra os caracteres restantes e convertendo para minúscula
-    for (i = 1; i < tamanhodonome; i++)
+    int tamanho_do_nome = strlen(paciente.nome);
+    paciente.nome[0] = toupper(paciente.nome[0]); // convertendo o primeiro caractere para maiúsculo
+    // Percorra os caracteres restantes e convertendo para minúsculo
+    for (i = 1; i < tamanho_do_nome; i++)
     {
         paciente.nome[i] = tolower(paciente.nome[i]);
-        // Verificando se o caractere anterior é um espaço em branco Se sim, converte o caractere atual para maiúscula
+        // Verificando se o caractere anterior é um espaço em branco. Se sim, converte o caractere atual para maiúsculo
         if (paciente.nome[i - 1] == ' ')
         {
             paciente.nome[i] = toupper(paciente.nome[i]);
@@ -93,8 +122,9 @@ FILE *cadastra_paciente(FILE *arquivo, char *caminho)
     printf("Digite a receita para o paciente: ");
     scanf(" %[^\n]s", paciente.receita);
 
-    printf("Internado? (1-sim) (0-nao)");
-    scanf(" %d", &paciente.internado);
+    printf("Internado? (1-sim) (0-nao): ");
+    scanf("%d", &paciente.internado);
+
     // Pedir para o usuário escolher qual documento cadastrar
     printf("Digite '1' para cadastrar o CPF ou '2' para cadastrar o RG: ");
     scanf(" %c", &opcao_documento);
@@ -103,12 +133,12 @@ FILE *cadastra_paciente(FILE *arquivo, char *caminho)
     if (opcao_documento == '1')
     {
         printf("Digite o CPF do paciente (XXX.YYY.ZZZ-SS): ");
-        scanf(" %s", paciente.documento.cpf);
+        scanf(" %[^\n]s", paciente.documento.cpf);
     }
     else if (opcao_documento == '2')
     {
         printf("Digite o RG do paciente (XXX.YYY.ZZZ): ");
-        scanf(" %s", paciente.documento.rg);
+        scanf(" %[^\n]s", paciente.documento.rg);
     }
     else
     {
@@ -116,31 +146,64 @@ FILE *cadastra_paciente(FILE *arquivo, char *caminho)
         exit(1);
     }
 
-    // Escrever os dados do aluno no arquivo
-    if (opcao_documento == '1')
-        fprintf(arquivo, "%s\t%s\t%s\t%s\t%i\n", paciente.nome, paciente.documento.cpf, paciente.enfermidade, paciente.receita, paciente.internado);
-    else
-        fprintf(arquivo, "%s\t%s\t%s\t%s\t%i\n", paciente.nome, paciente.documento.rg, paciente.enfermidade, paciente.receita, paciente.internado);
-
-    // Fechar o arquivo
-    fclose(arquivo);
-    ordena_pacientes(caminho);
+    // Adicionando o paciente na lista do hospital
+    lista_add(h, paciente);
+    (*qnt)++;
     printf("Paciente cadastrado com sucesso.\n\n");
+    return h;
+}
+
+void lista_imprime(Hospital *h)
+{
+    Listapacientes *p = h->lista->next;
+    while (p != NULL)
+    {
+        printf("Nome: %s\n", p->pacientes->nome);
+        printf("Enfermidade: %s\n", p->pacientes->enfermidade);
+        printf("Receita: %s\n", p->pacientes->receita);
+        printf("Internado: %s\n", p->pacientes->internado ? "Sim" : "Nao");
+        printf("Documento: %s\n", p->pacientes->documento.cpf[0] != '\0' ? p->pacientes->documento.cpf : p->pacientes->documento.rg);
+        printf("\n");
+        p = p->next;
+    }
+}
+
+FILE *add_arquivo(Hospital *h, char *caminho)
+{
+    FILE *arquivo = fopen(caminho, "w");
+    if (arquivo == NULL)
+    {
+        printf("Erro ao abrir o arquivo.\n");
+        exit(1);
+    }
+
+    Listapacientes *p = h->lista;
+    while (p->next != NULL)
+    {
+        Pacientes paciente = *(p->next->pacientes);
+        fprintf(arquivo, "Nome: %s\n", paciente.nome);
+        fprintf(arquivo, "Enfermidade: %s\n", paciente.enfermidade);
+        fprintf(arquivo, "Receita: %s\n", paciente.receita);
+        fprintf(arquivo, "Internado: %s\n", paciente.internado ? "Sim" : "Nao");
+        if (strlen(paciente.documento.cpf) == 14)
+        {
+            fprintf(arquivo, "CPF: %s\n", paciente.documento.cpf);
+        }
+        else
+        {
+            fprintf(arquivo, "RG: %s\n", paciente.documento.rg);
+        }
+        fprintf(arquivo, "\n");
+        p = p->next;
+    }
+
+    fclose(arquivo);
     return arquivo;
 }
 
-// Função para comparar dois pacientes por nome (usado no quicksort)
-int compare_pacientes(const void *a, const void *b)
+void ler_arquivo(Hospital *h, char *caminho, int *num_pacientes)
 {
-    Pacientes *pa = (Pacientes *)a;
-    Pacientes *pb = (Pacientes *)b;
-    return strcmp(pa->nome, pb->nome);
-}
-
-// Função para ler e escrever os pacientes em ordem alfabética no arquivo
-void ordena_pacientes(char *caminho)
-{
-    // Abrir o arquivo para leitura
+    Pacientes paciente;
     FILE *arquivo = fopen(caminho, "r");
     if (arquivo == NULL)
     {
@@ -148,51 +211,33 @@ void ordena_pacientes(char *caminho)
         exit(1);
     }
 
-    // Contar o número de pacientes no arquivo
-    int num_pacientes = 0;
-    char linha[MaxNome + 100];
-    while (fgets(linha, MaxNome + 100, arquivo))
+    char linha[100];
+    int i = 0;
+    while (fgets(linha, 100, arquivo) != NULL)
     {
-        num_pacientes++;
+        sscanf(linha, "Nome: %[^\n]", paciente.nome);
+        fgets(linha, 100, arquivo);
+        sscanf(linha, "Enfermidade: %[^\n]", paciente.enfermidade);
+        fgets(linha, 100, arquivo);
+        sscanf(linha, "Receita: %[^\n]", paciente.receita);
+        fgets(linha, 100, arquivo);
+        sscanf(linha, "Internado: %d", &paciente.internado);
+        fgets(linha, 100, arquivo);
+        if (strstr(linha, "CPF") != NULL)
+        {
+            sscanf(linha, "CPF: %s", paciente.documento.cpf);
+            fgets(linha, 100, arquivo);
+            sscanf(linha, "RG: %s", paciente.documento.rg);
+        }
+        else
+        {
+            sscanf(linha, "RG: %s", paciente.documento.rg);
+            fgets(linha, 100, arquivo);
+            sscanf(linha, "CPF: %s", paciente.documento.cpf);
+        }
+        lista_add(h, paciente);
+        i++;
     }
-    rewind(arquivo); // Voltar o ponteiro do arquivo para o início
-
-    // Alocar memória para a matriz de pacientes
-    Pacientes *pacientes = (Pacientes *)malloc(num_pacientes * sizeof(Pacientes));
-    if (pacientes == NULL)
-    {
-        printf("Erro: memoria insuficiente.\n");
-        exit(1);
-    }
-
-    // Ler os pacientes do arquivo para a matriz
-    for (int i = 0; i < num_pacientes; i++)
-    {
-        fgets(linha, MaxNome + 100, arquivo);
-        sscanf(linha, "%[^'\t']\t%s\t%[^'\t']\t%[^'\t']\t%d\n",
-               pacientes[i].nome, pacientes[i].documento, pacientes[i].enfermidade,
-               pacientes[i].receita, &pacientes[i].internado);
-    }
-
-    // Ordenar a matriz de pacientes por nome
-    qsort(pacientes, num_pacientes, sizeof(Pacientes), compare_pacientes);
-
-    // Fechar o arquivo de leitura e abrir o arquivo de escrita
     fclose(arquivo);
-    arquivo = fopen(caminho, "w");
-    if (arquivo == NULL)
-    {
-        printf("Erro ao abrir o arquivo.\n");
-        exit(1);
-    }
-
-    // Escrever os pacientes ordenados no arquivo
-    for (int i = 0; i < num_pacientes; i++)
-    {
-        fprintf(arquivo, "%s\t%s\t%s\t%s\t%d\n",pacientes[i].nome, pacientes[i].documento, pacientes[i].enfermidade,pacientes[i].receita, pacientes[i].internado);
-    }
-
-    // Fechar o arquivo de escrita e liberar a memória alocada
-    fclose(arquivo);
-    free(pacientes);
+    *num_pacientes = i;
 }

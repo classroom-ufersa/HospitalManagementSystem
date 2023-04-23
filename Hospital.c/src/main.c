@@ -1,10 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "hospital.c"
 
 int main(void)
 {
-    int controle = 0;
+    int controle = 0, quantidade = 0;
     FILE *arquivo;
     char caminho[] = "C:\\Users\\jhoan\\Desktop\\VScode\\GitHub\\HospitalManagementSystem\\Hospital.c\\data\\pacientes.txt"; // caminho do arquivo txt(Varia de pc para pc)
     arquivo = fopen(caminho, "r");
@@ -13,7 +11,8 @@ int main(void)
         printf("Erro ao abrir arquivo!");
         exit(1);
     }
-    Hospital *HealCare = lista_cria(HealCare);
+    Hospital *HealCare = lista_cria();
+    ler_arquivo(HealCare, caminho, &quantidade);
     printf("+----------------------------------------------------------------+\n"
            "|        Bem-vindo ao Programa de Gerenciamento Hospitalar       |\n"
            "|                                                                |\n"
@@ -38,13 +37,14 @@ int main(void)
         switch (controle)
         {
         case 1:
-            arquivo = cadastra_paciente(arquivo, caminho);
+            HealCare = cadastra_paciente(HealCare, &quantidade);
+            arquivo = add_arquivo(HealCare, caminho);
             break;
         case 2:
 
             break;
         case 3:
-
+            lista_imprime(HealCare);
             break;
         case 4:
 
@@ -53,7 +53,10 @@ int main(void)
 
             break;
         case 6:
-
+            if (quantidade < Leitos)
+                printf("Existem %d leitos disponiveis no momento de um total de %d\n\n", Leitos - quantidade, Leitos);
+            else
+                printf("Nao existem leitos disponiveis no momento todos os %d estao sendo utilizados!\n\n", Leitos);
             break;
         case 7:
 

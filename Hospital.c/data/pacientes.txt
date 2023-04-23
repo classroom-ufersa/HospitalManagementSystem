@@ -1,1 +1,24 @@
-Jhoan	232.323.423	dengue	cafe	1
+Nome: Caio Moises
+Enfermidade: Dor de barriga
+Receita: Injecao e dipirona
+Internado: Sim
+RG: 123.321.312
+
+Nome: Heitor Claudino
+Enfermidade: Dor de cabeca
+Receita: dipirona
+Internado: Nao
+CPF: 432.424.543-32
+
+Nome: Jhoan Fernandes
+Enfermidade: Gripe
+Receita: Mel
+Internado: Sim
+CPF: 123.777.777-77
+
+Nome: Luiz Felipe
+Enfermidade: Dengue
+Receita: Injecao
+Internado: Sim
+RG: 213.321.321
+
