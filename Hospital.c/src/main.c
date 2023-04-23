@@ -13,7 +13,7 @@ int main(void)
         printf("Erro ao abrir arquivo!");
         exit(1);
     }
-    
+    Hospital *HealCare = lista_cria(HealCare);
     printf("+----------------------------------------------------------------+\n"
            "|        Bem-vindo ao Programa de Gerenciamento Hospitalar       |\n"
            "|                                                                |\n"
@@ -38,7 +38,7 @@ int main(void)
         switch (controle)
         {
         case 1:
-
+            arquivo = cadastra_paciente(arquivo, caminho);
             break;
         case 2:
 
