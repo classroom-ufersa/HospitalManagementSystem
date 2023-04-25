@@ -118,6 +118,99 @@ main {
     font-size: 20px;
 }
 
+.inputs{
+  padding: 20px;
+  position: absolute;
+  width: 11.3em;
+  height: 13em;
+  top: 20%;
+  left: 14%;
+  background-color: rgba(255, 255, 255, 0.836);
+  border-radius: 15px;
+  border: 5px inset rgb(78, 127, 172);
+}
+
+.text {
+  position: relative;
+  width: 11em;
+  height: 2em;
+  border-radius: 5px;
+  border-bottom: 3px solid gray;
+  transition: width 0.4s ease-in-out;
+}
+
+.text:focus{
+  box-shadow: 0 0 0 0;
+  outline: 0;
+  animation: bar 0.3s ;
+  animation-iteration-count: 1;
+  border-bottom: 3px solid rgb(0, 238, 255);
+  width: 11.5em;
+}
+
+label{
+  color: var(--main-color);
+  padding: -2px;
+  font-size: 14.6px;
+}
+input[type="radio"] {
+  background-color: #fff;
+  font: inherit;
+  color: currentColor;
+  width: 1em;
+  height: 1em;
+  border: 0.15em solid var(--main-color);
+}
+
+button{
+  background-color: #04AA6D;
+  width: 6em;
+  height: 2em;
+  border: none;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px #36e4a471;
+  overflow: hidden;
+  transition-duration: 0.05s;
+  position: absolute;
+  top: 80%;
+  left: 30%;
+}
+
+button:hover {
+  background-color: #1fdf98;
+}
+
+button:active {
+  background-color: #1fdf98;
+  box-shadow: 0 2px #36e4a471;
+  transform: translateY(2px);
+}
+
+.text::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+@keyframes bar {
+  0% {
+      border-bottom: 3px solid gray;
+  }
+  25% {
+      border-bottom: 3px solid rgb(124, 167, 164);
+  }
+  50% {
+      border-bottom: 3px solid rgb(98, 185, 180);
+  }
+  75% {
+      border-bottom: 3px solid rgb(62, 201, 191);
+  }
+  100% {
+      border-bottom: 3px solid rgb(0, 238, 255);
+  }
+}
+
 footer{
   color: rgb(255, 255, 255);
   font-style: italic;

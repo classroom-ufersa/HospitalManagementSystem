@@ -13,7 +13,6 @@
             <div class="topnav" id="myTopnav">
             <a class="active">HealCare</a>    
             <a href="#cadastrar">Cadastrar</a>
-            <a href="#editar">Editar</a>
             <a href="#buscar">Buscar</a>
             <a href="#listar">Listar</a>
             <a href="#dadosgerais">Dados Gerais</a>
@@ -27,15 +26,24 @@
             <div class="span">
                 <section class="conteiner" id="conteinercadastro">
                     <p class="titulobox">Cadastro de paciente</p>
-                    
-                </section>
-            </div>        
-        </div>
-        <div class="box" id="editar">
-            <div class="span">
-                <section class="conteiner">
-                    <p class="titulobox">Editar paciente</p>
-
+                    <div class="inputs">
+                        <input class="text" type="text" name="nome" id="nome" placeholder="Nome" onfocus="this.value=''">
+                        <br>
+                        <input class="text" type="text" name="enfermidade" id="enfermidade" placeholder="Enfermidade" onfocus="this.value=''">
+                        <br>
+                        <input class="text" type="text" name="receita" id="receita" placeholder="Receita" onfocus="this.value=''">
+                        <br>
+                        <input class="text" type="text" name="documento" id="documento" placeholder="Documento (cpf ou rg)" onfocus="this.value=''">
+                        <br>
+                        <label>
+                            internado?
+                            <input class="radio" type="radio" name="internado" value="sim"> Sim
+                        </label>
+                        <label>
+                            <input class="radio" type="radio" name="internado" value="nao"> Não
+                        </label>
+                        <button value="cadastrar" onclick="cadastrar()"> Cadastrar </button>
+                    </div>
                 </section>
             </div>        
         </div>
