@@ -23,3 +23,13 @@ O sistema é responsável por gerir pacientes de um hospital dando ao usuário u
   
 - ### Consultar quantidade de pacientes:
   Exibe o número de pacientes cadastrados no hospital.
+
+
+O projeto foi feito utilizando arquivos, listas duplamente encadeadas, alocação dinâmica. Mas o que são essas coisas?
+
+
+- ### Arquivos:
+
+- ### Lista duplamente encadeadas:
+
+- ### Alocação dinamica:
