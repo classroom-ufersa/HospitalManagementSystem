@@ -3,17 +3,17 @@ Sistema Hospitalar
 
 O sistema é responsável por gerir pacientes de um hospital dando ao usuário uma grande diversidade de opções para realizar o cadastro, sendo elas:
 
-*Cadastrar Paciente:
+- Cadastrar Paciente:
   Responsável por coletar os dados do paciente e formatar os nomes no padrão de busca.
   
-*Excluir Paciente:
+- Excluir Paciente:
 
-*Listar Paciente:
+- Listar Paciente:
 
-*Buscar Paciente:
+- Buscar Paciente:
 
-*Editar cadastro de paciente:
+- Editar cadastro de paciente:
 
-*Consultar vagar disponiveis de leitos no hospital:
+- Consultar vagar disponiveis de leitos no hospital:
 
-* Consultar quantidade de pacientes:
+- Consultar quantidade de pacientes:
