@@ -1,9 +1,6 @@
 #include <stdio.h>  //funções basicas da linguagem c
 #include <stdlib.h> //para fazer alocação dinamica
 #include <string.h> //para usar strings
-#include <math.h>   //operações algebricas
-#include <time.h>   //Tempo de execução
-#include <ctype.h>  //manipulação de caracteres
 #include "C:\Users\jhoan\Desktop\VScode\GitHub\HospitalManagementSystem\Hospital.c\include\hospital.h"
 
 #define MaxNome 100
@@ -24,6 +21,7 @@ struct pacientes
     int internado; // sim == 1, nao == 0
     char receita[100];
 };
+
 struct listapacientes
 {
     Pacientes *pacientes;
@@ -56,39 +54,6 @@ Hospital *lista_cria(void)
     strcpy(h->nome, "HealCare");
     strcpy(h->localizacao, "Cidade: UmariGomes");
     return h;
-}
-void lista_add(Hospital *h, Pacientes paciente)
-{
-    // Encontrar a posição correta para inserir o novo paciente
-    Listapacientes *p = h->lista;
-    while (p->next != NULL && strcmp(p->next->pacientes->nome, paciente.nome) < 0)
-    {
-        p = p->next;
-    }
-
-    // Criar um novo nó para o novo paciente
-    Listapacientes *novo_no = (Listapacientes *)malloc(sizeof(Listapacientes));
-    if (novo_no == NULL)
-    {
-        printf("Erro: memoria insuficiente.\n");
-        exit(1);
-    }
-    novo_no->pacientes = (Pacientes *)malloc(sizeof(Pacientes));
-    if (novo_no->pacientes == NULL)
-    {
-        printf("Erro: memoria insuficiente.\n");
-        exit(1);
-    }
-    *novo_no->pacientes = paciente;
-
-    // Inserir o novo paciente na posição correta
-    novo_no->next = p->next;
-    novo_no->prev = p;
-    if (p->next != NULL)
-    {
-        p->next->prev = novo_no;
-    }
-    p->next = novo_no;
 }
 
 Hospital *cadastra_paciente(Hospital *h, int *qnt)
@@ -153,6 +118,40 @@ Hospital *cadastra_paciente(Hospital *h, int *qnt)
     (h->leitos)--;
     printf("Paciente cadastrado com sucesso.\n\n");
     return h;
+}
+
+void lista_add(Hospital *h, Pacientes paciente)
+{
+    // Encontrar a posição correta para inserir o novo paciente
+    Listapacientes *p = h->lista;
+    while (p->next != NULL && strcmp(p->next->pacientes->nome, paciente.nome) < 0)
+    {
+        p = p->next;
+    }
+
+    // Criar um novo nó para o novo paciente
+    Listapacientes *novo_no = (Listapacientes *)malloc(sizeof(Listapacientes));
+    if (novo_no == NULL)
+    {
+        printf("Erro: memoria insuficiente.\n");
+        exit(1);
+    }
+    novo_no->pacientes = (Pacientes *)malloc(sizeof(Pacientes));
+    if (novo_no->pacientes == NULL)
+    {
+        printf("Erro: memoria insuficiente.\n");
+        exit(1);
+    }
+    *novo_no->pacientes = paciente;
+
+    // Inserir o novo paciente na posição correta
+    novo_no->next = p->next;
+    novo_no->prev = p;
+    if (p->next != NULL)
+    {
+        p->next->prev = novo_no;
+    }
+    p->next = novo_no;
 }
 
 void lista_imprime(Hospital *h)
@@ -362,4 +361,16 @@ void lista_libera(Hospital *h)
         free(p);
         p = t;
     }
+}
+
+void dados_hospital(Hospital *h)
+{
+    printf("+----------------------------------------------------------------+\n"
+           "|      Bem-vindo ao Hospital %s                            |\n"
+           "|      Codigo: %d                                                |\n"           
+           "|      Localizado em %s                          |\n"
+           "|      Horario de funcionamento das 07:00 as 21:00               |\n"
+           "|                                                                |\n"
+           "|      Socios: Jhoan Fernandes    Felipe Tomaz                   |\n"
+           "+----------------------------------------------------------------+\n\n",h->nome,h->codigo,h->localizacao);
 }

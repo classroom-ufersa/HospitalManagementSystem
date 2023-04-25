@@ -31,3 +31,7 @@ void edita_paciente(Listapacientes *p);
 
 // exclui um paciente
 Hospital *excluir_paciente(Listapacientes *p, Hospital *h);
+
+//libera a lista
+void lista_libera(Hospital *h);
+

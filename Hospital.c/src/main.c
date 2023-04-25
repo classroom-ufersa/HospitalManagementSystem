@@ -15,11 +15,7 @@ int main(void)
     }
     Hospital *HealCare = lista_cria();
     ler_arquivo(HealCare, caminho, &quantidade);
-    printf("+----------------------------------------------------------------+\n"
-           "|        Bem-vindo ao Programa de Gerenciamento Hospitalar       |\n"
-           "|                                                                |\n"
-           "|           Autores: Jhoan Fernandes    Felipe Tomaz             |\n"
-           "+----------------------------------------------------------------+\n\n");
+    dados_hospital(HealCare);
     while (controle != 8) // vai repetir ate o usuario digitar 8
     {
         printf("Menu:\n");
