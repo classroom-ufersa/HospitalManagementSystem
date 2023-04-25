@@ -5,6 +5,7 @@ O sistema é responsável por gerir pacientes de um hospital dando ao usuário u
 
 *Cadastrar Paciente:
   Responsável por coletar os dados do paciente e formatar os nomes no padrão de busca.
+  
 *Excluir Paciente:
 
 *Listar Paciente:
