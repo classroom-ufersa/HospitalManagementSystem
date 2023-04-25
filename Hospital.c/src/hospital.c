@@ -369,7 +369,7 @@ void dados_hospital(Hospital *h)
     printf("+----------------------------------------------------------------+\n"
            "|      Bem-vindo ao Hospital %s                            |\n"
            "|      Codigo: %d                                                |\n"
-           "|      Localizado em %s                          |\n"
+           "|      Localizado na %s                          |\n"
            "|      Horario de funcionamento das 07:00 as 21:00               |\n"
            "|                                                                |\n"
            "|      Socios: Jhoan Fernandes    Felipe Tomaz                   |\n"
