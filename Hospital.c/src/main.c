@@ -67,7 +67,7 @@ int main(void)
             break;
         case 6:
             if (HealCare->leitos > 0)
-                printf("Existem %d leitos disponiveis no momento de um total de %d\n\n", HealCare->leitos, Leitos);
+                printf("Existem %d leitos disponiveis no momento de um total de %d.\n\n", HealCare->leitos, Leitos);
             else
                 printf("Nao existem leitos disponiveis no momento todos os %d estao sendo utilizados!\n\n", Leitos);
             break;

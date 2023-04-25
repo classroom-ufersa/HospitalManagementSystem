@@ -1,6 +1,7 @@
 #include <stdio.h>  //funções basicas da linguagem c
 #include <stdlib.h> //para fazer alocação dinamica
 #include <string.h> //para usar strings
+#include <ctype.h> //manipulação de caracteres
 #include "C:\Users\jhoan\Desktop\VScode\GitHub\HospitalManagementSystem\Hospital.c\include\hospital.h"
 
 #define MaxNome 100
@@ -367,10 +368,11 @@ void dados_hospital(Hospital *h)
 {
     printf("+----------------------------------------------------------------+\n"
            "|      Bem-vindo ao Hospital %s                            |\n"
-           "|      Codigo: %d                                                |\n"           
+           "|      Codigo: %d                                                |\n"
            "|      Localizado em %s                          |\n"
            "|      Horario de funcionamento das 07:00 as 21:00               |\n"
            "|                                                                |\n"
            "|      Socios: Jhoan Fernandes    Felipe Tomaz                   |\n"
-           "+----------------------------------------------------------------+\n\n",h->nome,h->codigo,h->localizacao);
+           "+----------------------------------------------------------------+\n\n",
+           h->nome, h->codigo, h->localizacao);
 }

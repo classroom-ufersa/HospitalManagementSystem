@@ -1,14 +1,20 @@
 Nome: Caio Moises
-Enfermidade: Dor de barriga
-Receita: Injecao e dipirona
+Enfermidade: Perna Quebrada
+Receita: Injecao bezetacil
 Internado: Sim
-RG: 123.321.312
+RG: 213.355.657
 
 Nome: Jhoan Fernandes
 Enfermidade: Gripe
 Receita: Mel
 Internado: Sim
 CPF: 777.777.777-77
+
+Nome: Joao Lucas
+Enfermidade: Febre
+Receita: Ibuprofeno
+Internado: Nao
+RG: 231.323.543
 
 Nome: Luiz Felipe
 Enfermidade: Dengue
