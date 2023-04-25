@@ -3,6 +3,8 @@
 int main(void)
 {
     int controle = 0, quantidade = 0;
+    char nome[MaxNome];
+    Listapacientes *pacientetemp = (Listapacientes*) malloc(sizeof(Listapacientes));
     FILE *arquivo;
     char caminho[] = "C:\\Users\\jhoan\\Desktop\\VScode\\GitHub\\HospitalManagementSystem\\Hospital.c\\data\\pacientes.txt"; // caminho do arquivo txt(Varia de pc para pc)
     arquivo = fopen(caminho, "r");
@@ -47,19 +49,28 @@ int main(void)
             lista_imprime(HealCare);
             break;
         case 4:
-
+            printf("Insira o nome do paciente que deseja buscar: ");
+            scanf(" %[^\n]s", nome);
+            pacientetemp = busca_paciente(HealCare, nome);
+            printf("\nNome: %s\n", pacientetemp->pacientes->nome);
+            printf("Enfermidade: %s\n", pacientetemp->pacientes->enfermidade);
+            printf("Receita: %s\n", pacientetemp->pacientes->receita);
+            printf("Internado: %s\n", pacientetemp->pacientes->internado ? "Sim" : "Nao");
+            printf("Documento: %s\n\n", pacientetemp->pacientes->documento.rg);
             break;
         case 5:
-
+            printf("Insira o nome do paciente que deseja editar: ");
+            scanf(" %[^\n]s", nome);
+            pacientetemp = busca_paciente(HealCare, nome);
             break;
         case 6:
-            if (quantidade < Leitos)
-                printf("Existem %d leitos disponiveis no momento de um total de %d\n\n", Leitos - quantidade, Leitos);
+            if (HealCare->leitos > 0)
+                printf("Existem %d leitos disponiveis no momento de um total de %d\n\n", HealCare->leitos, Leitos);
             else
                 printf("Nao existem leitos disponiveis no momento todos os %d estao sendo utilizados!\n\n", Leitos);
             break;
         case 7:
-
+            printf("Existem um total de %d pacientes cadastrados!\n\n", Leitos - HealCare->leitos);
             break;
         case 8:
 
@@ -69,5 +80,6 @@ int main(void)
             break;
         }
     }
+    free(pacientetemp);
     return 0;
 }

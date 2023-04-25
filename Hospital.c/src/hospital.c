@@ -22,7 +22,7 @@ struct pacientes
     Document documento;
     char enfermidade[50];
     int internado; // sim == 1, nao == 0
-    char receita[50];
+    char receita[100];
 };
 struct listapacientes
 {
@@ -36,7 +36,7 @@ struct hospital
     int codigo;
     int leitos;
     char localizacao[20];
-    char nome[15];
+    char nome[10];
     Listapacientes *lista;
 };
 
@@ -54,6 +54,7 @@ Hospital *lista_cria(void)
     h->leitos = Leitos;
     h->codigo = codigohospital;
     strcpy(h->nome, "HealCare");
+    strcpy(h->localizacao, "Cidade: UmariGomes");
     return h;
 }
 void lista_add(Hospital *h, Pacientes paciente)
@@ -149,6 +150,7 @@ Hospital *cadastra_paciente(Hospital *h, int *qnt)
     // Adicionando o paciente na lista do hospital
     lista_add(h, paciente);
     (*qnt)++;
+    (h->leitos)--;
     printf("Paciente cadastrado com sucesso.\n\n");
     return h;
 }
@@ -240,4 +242,27 @@ void ler_arquivo(Hospital *h, char *caminho, int *num_pacientes)
     }
     fclose(arquivo);
     *num_pacientes = i;
+    h->leitos -= i;
+}
+
+Listapacientes *busca_paciente(Hospital *h, char nome[])
+{
+    Listapacientes *p;
+    for (p = h->lista; p != NULL; p = p->next)
+    {
+        if (strcmp(p->pacientes->nome, nome) == 0)
+        {
+            return p;
+        }
+    }
+    return NULL; // nao achou
+}
+
+void edita_paciente(Listapacientes* p);
+{
+                printf("\nNome: %s\n", p->pacientes->nome);
+            printf("Enfermidade: %s\n", p->pacientes->enfermidade);
+            printf("Receita: %s\n", p->pacientes->receita);
+            printf("Internado: %s\n", p->pacientes->internado ? "Sim" : "Nao");
+            printf("Documento: %s\n\n", p->pacientes->documento.rg);
 }

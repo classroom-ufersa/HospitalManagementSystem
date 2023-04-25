@@ -21,3 +21,5 @@ Hospital *lista_cria(void);
 void lista_imprime(Hospital *h);
 
 void ler_arquivo(Hospital *h, char *caminho, int *qnt);
+
+Listapacientes *busca_paciente(Hospital *h, char nome[]);
