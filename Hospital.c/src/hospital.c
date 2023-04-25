@@ -331,19 +331,35 @@ Hospital *excluir_paciente(Listapacientes *p, Hospital *h)
     {
         return h; // não achou
     }
-    // retira o elemento
-    if (h->lista == p) // testa se é o primeiro elemento
-    {
-        h->lista = p->next;
-    }
     else
     {
-        p->prev->next = p->next; // retira o do meio
+        // retira o elemento
+        if (h->lista == p) // testa se é o primeiro elemento
+        {
+            h->lista = p->next;
+        }
+        else
+        {
+            p->prev->next = p->next; // retira o do meio
+        }
+        if (p->next != NULL) // testa se é o ultimo elemento
+        {
+            p->next->prev = p->prev;
+        }
+        free(p);
+        h->leitos++;
+        printf("Paciente excluido com sucesso!\n");
     }
-    if (p->next != NULL) // testa se é o ultimo elemento
-    {
-        p->next->prev = p->prev;
-    }
-    free(p);
     return h;
+}
+
+void lista_libera(Hospital *h)
+{
+    Listapacientes *p = h->lista;
+    while (p != NULL)
+    {
+        Listapacientes *t = p->next;
+        free(p);
+        p = t;
+    }
 }

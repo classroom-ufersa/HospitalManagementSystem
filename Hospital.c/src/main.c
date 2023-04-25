@@ -87,5 +87,6 @@ int main(void)
         }
     }
     free(pacientetemp);
+    lista_libera(HealCare);
     return 0;
 }
