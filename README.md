@@ -1,5 +1,5 @@
 ## HospitalManagementSystem
-#Sistema Hospitalar < HealCare >
+# Sistema Hospitalar < HealCare >
 
 O sistema é responsável por gerir pacientes de um hospital dando ao usuário uma grande diversidade de opções para realizar o cadastro, sendo elas:
 
