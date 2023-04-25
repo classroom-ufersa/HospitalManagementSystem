@@ -1,10 +1,9 @@
 :root{
-    --main-color:#0e0e0e;
+    --main-color:#161515;
     --vermelho: #eb1010;
     --verde: #04AA6D;
     --branco: #f2f2f2;
 }
-
 
 body {
     background-color: rgb(59, 59, 59);
@@ -59,6 +58,7 @@ main {
   align-items: center;
   justify-content: center;
   padding-top: 20vh;
+  
 }
 
 .box {
@@ -72,6 +72,7 @@ main {
   overflow: hidden;
   box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.582);
   margin-bottom: 50px; /* adicione um espaço entre os elementos box */
+
 }
 
 .box::before {
@@ -102,13 +103,19 @@ main {
 
 .conteiner {
   position: absolute;
-  background-color: rgb(0, 0, 0);
+  background-color: var(--main-color);
   inset: 0px;
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
+  color: var(--branco);
+}
+
+.titulobox{
+    margin-bottom: 17em;
+    font-size: 20px;
 }
 
 footer{
