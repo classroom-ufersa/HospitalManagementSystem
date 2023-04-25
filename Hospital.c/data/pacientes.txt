@@ -6,7 +6,7 @@ RG: 123.321.312
 
 Nome: Heitor Claudino
 Enfermidade: Dor de cabeca
-Receita: dipirona
+Receita: Dipirona
 Internado: Sim
 CPF: 432.424.543-32
 
@@ -21,10 +21,4 @@ Enfermidade: Dengue
 Receita: Injecao
 Internado: Sim
 RG: 213.321.321
-
-Nome: Murilo Ferreira
-Enfermidade: Perna quebrada
-Receita: Injecao
-Internado: Sim
-CPF: 123.432.544-56
 

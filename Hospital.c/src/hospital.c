@@ -258,11 +258,92 @@ Listapacientes *busca_paciente(Hospital *h, char nome[])
     return NULL; // nao achou
 }
 
-void edita_paciente(Listapacientes* p);
+void edita_paciente(Listapacientes *p)
 {
-                printf("\nNome: %s\n", p->pacientes->nome);
-            printf("Enfermidade: %s\n", p->pacientes->enfermidade);
-            printf("Receita: %s\n", p->pacientes->receita);
-            printf("Internado: %s\n", p->pacientes->internado ? "Sim" : "Nao");
-            printf("Documento: %s\n\n", p->pacientes->documento.rg);
+    int cont;
+    printf("\nNome: %s\n", p->pacientes->nome);
+    printf("Enfermidade: %s\n", p->pacientes->enfermidade);
+    printf("Receita: %s\n", p->pacientes->receita);
+    printf("Internado: %s\n", p->pacientes->internado ? "Sim" : "Nao");
+    printf("Documento: %s\n\n", p->pacientes->documento.rg);
+    printf("Deseja mesmo editar o paciente acima? (1-sim)(2-nao)\n");
+    scanf("%d", &cont);
+    if (cont == 1)
+    {
+
+        int opcao;
+        printf("\nO que voce deseja editar?\n");
+        printf("1 - Nome\n");
+        printf("2 - Enfermidade\n");
+        printf("3 - Receita\n");
+        printf("4 - Internado\n");
+        printf("5 - Documento\n");
+        printf("Opcao: ");
+        scanf("%d", &opcao);
+        switch (opcao)
+        {
+        case 1:
+            printf("\nDigite o novo nome: ");
+            scanf(" %[^\n]s", p->pacientes->nome);
+            break;
+        case 2:
+            printf("\nDigite a nova enfermidade: ");
+            scanf(" %[^\n]s", p->pacientes->enfermidade);
+            break;
+        case 3:
+            printf("\nDigite a nova receita: ");
+            scanf(" %[^\n]s", p->pacientes->receita);
+            break;
+        case 4:
+            printf("\nO paciente esta internado? (1-sim / 0-nao): ");
+            scanf("%d", &p->pacientes->internado);
+            break;
+        case 5:
+            printf("\nDigite '1' para editar o CPF ou '2' para editar o RG: ");
+            char opcao_documento;
+            scanf(" %c", &opcao_documento);
+
+            if (opcao_documento == '1')
+            {
+                printf("Digite o novo CPF (XXX.YYY.ZZZ-SS): ");
+                scanf(" %[^\n]s", p->pacientes->documento.cpf);
+            }
+            else if (opcao_documento == '2')
+            {
+                printf("Digite o novo RG (XXX.YYY.ZZZ): ");
+                scanf(" %[^\n]s", p->pacientes->documento.rg);
+            }
+            else
+            {
+                printf("Opcao invalida!\n");
+            }
+            break;
+        default:
+            printf("Opcao invalida!\n");
+            break;
+        }
+    }
+}
+
+Hospital *excluir_paciente(Listapacientes *p, Hospital *h)
+{
+    if (p == NULL)
+    {
+        return h; // não achou
+    }
+    // retira o elemento
+    if (h->lista == p) // testa se é o primeiro elemento
+    {
+        h->lista = p->next;
+    }
+    else
+    {
+        p->prev->next = p->next; // retira o do meio
+    }
+    if (p->next != NULL) // testa se é o ultimo elemento
+    {
+        p->next->prev = p->prev;
+    }
+    free(p);
+    return h;
 }

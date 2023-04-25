@@ -4,7 +4,7 @@ int main(void)
 {
     int controle = 0, quantidade = 0;
     char nome[MaxNome];
-    Listapacientes *pacientetemp = (Listapacientes*) malloc(sizeof(Listapacientes));
+    Listapacientes *pacientetemp = (Listapacientes *)malloc(sizeof(Listapacientes));
     FILE *arquivo;
     char caminho[] = "C:\\Users\\jhoan\\Desktop\\VScode\\GitHub\\HospitalManagementSystem\\Hospital.c\\data\\pacientes.txt"; // caminho do arquivo txt(Varia de pc para pc)
     arquivo = fopen(caminho, "r");
@@ -43,7 +43,11 @@ int main(void)
             arquivo = add_arquivo(HealCare, caminho);
             break;
         case 2:
-
+            printf("Insira o nome do paciente que deseja excluir: ");
+            scanf(" %[^\n]s", nome);
+            pacientetemp = busca_paciente(HealCare, nome);
+            excluir_paciente(pacientetemp, HealCare);
+            add_arquivo(HealCare, caminho);
             break;
         case 3:
             lista_imprime(HealCare);
@@ -62,6 +66,8 @@ int main(void)
             printf("Insira o nome do paciente que deseja editar: ");
             scanf(" %[^\n]s", nome);
             pacientetemp = busca_paciente(HealCare, nome);
+            edita_paciente(pacientetemp);
+            add_arquivo(HealCare, caminho);
             break;
         case 6:
             if (HealCare->leitos > 0)
@@ -73,10 +79,10 @@ int main(void)
             printf("Existem um total de %d pacientes cadastrados!\n\n", Leitos - HealCare->leitos);
             break;
         case 8:
-
+            printf("Obrigado por utilizar meu programa!\n");
             break;
         default:
-            printf("opcao invalida!");
+            printf("opcao invalida!\n");
             break;
         }
     }
