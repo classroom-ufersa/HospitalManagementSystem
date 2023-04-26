@@ -1,7 +1,13 @@
 ## HospitalManagementSystem
 # Sistema Hospitalar < HealCare >
 
-O sistema é responsável por gerir pacientes de um hospital dando ao usuário uma grande diversidade de opções para realizar o cadastro, sendo elas:
+## INTRODUÇÃO
+
+  O sistema foi desenvolvido na linguigem C, utilizando vários funções presentes na linguagem. O intuito desse projeto é criar um sistema que consiga gerenciar leitos de hospital, conseguindo cadastrar o paciente, exibir o leito disponíveis e exibir os dados do paciente. O nome do hospital < HealCare > foi gerado automaticamente por uma IA, a cidade na qual o hospital está localizado é a junção dos nomes das cidades dos contribuientes do projeto, sendo ela Umarigomes. Lembrando que este sistema é de um hospital ficticio sendo utilizado para uso acâdemico.
+  
+## PROBLEMÁTICA 
+
+Criar um sistema é responsável por gerir pacientes de um hospital dando ao usuário uma grande diversidade de opções para realizar o cadastro, sendo elas:
 
 - ### Cadastrar Paciente:
   Responsável por coletar os dados do paciente e formatar os nomes no padrão de busca.
