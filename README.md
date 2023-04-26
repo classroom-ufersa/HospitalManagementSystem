@@ -42,3 +42,7 @@ O projeto foi feito utilizando arquivos, listas duplamente encadeadas, alocaçã
   No nosso sistema, nós usamos a lista duplamente encadeada para conseguir acessar os pacientes armazenados no arquivo. 
 
 - ### Alocação dinamica:
+
+- ### Ponteiro:
+
+- ### Tipos Estruturados:
