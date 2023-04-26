@@ -42,7 +42,8 @@ O projeto foi feito utilizando arquivos, listas duplamente encadeadas, alocaçã
   No nosso sistema, nós usamos a lista duplamente encadeada para conseguir acessar os pacientes armazenados no arquivo. 
 
 - ### Alocação dinamica:
-
+  Na alocação dinâmica o usuário pode alocar espaço durante a execução do programa, conseguindo ter um melhor aproveitamento na hora de ocupar espaços na memória. No nosso projeto nós usamos a alocação dinâmica para reservar o espaço da memória da quantidade de pacientes que o programa tem.
+  
 - ### Ponteiro:
-
+  
 - ### Tipos Estruturados:
