@@ -31,6 +31,7 @@ O projeto foi feito utilizando arquivos, listas duplamente encadeadas, alocaçã
 - ### Arquivos:
 
 - ### Lista duplamente encadeadas:
-  Como o nome já sugere, é uma lista como as outras. A grande diferença é que agora podemos percorrer a lista nos dois sentidos, ajudando a acessar diversas posições da nossa lista. Isso ocorré porque nessa lista existem dois ponteiros. O primeiro aponta para o próximo elemento da lista, enquanto o segundo ponteiro aponta para o elemnto anterior.
+  Como o nome já sugere, é uma lista como as outras. A grande diferença é que agora podemos percorrer a lista nos dois sentidos, ajudando a acessar diversas posições da nossa lista. Isso ocorré porque nessa lista existem dois ponteiros. O primeiro aponta para o próximo elemento da lista, enquanto o segundo ponteiro aponta para o elemento anterior. 
+  No nosso sistema, nós usamos a lista duplamente encadeada para conseguir acessar os pacientes armazenados no arquivo. 
 
 - ### Alocação dinamica:
