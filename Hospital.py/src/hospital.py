@@ -87,12 +87,13 @@ def lista_imprime(h):
         print("Enfermidade:", p.paciente.enfermidade)
         print("Receita:", p.paciente.receita)
         print("Internado:", "Sim" if p.paciente.internado else "Nao")
-        if p.paciente.documento.cpf:
-            print("CPF:", p.paciente.documento.cpf)
-        else:
-            print("RG:", p.paciente.documento.rg)
+        if p.paciente.documento.cpf or p.paciente.documento.rg:
+            if p.paciente.documento.cpf:
+                print("CPF:", p.paciente.documento.cpf)
+            else:
+                print("RG:", p.paciente.documento.rg)
+        print()
         p = p.next
-
 
 def add_arquivo(h, caminho):
     arquivo = open(caminho, "w")
