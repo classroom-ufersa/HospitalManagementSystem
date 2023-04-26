@@ -29,7 +29,8 @@ O projeto foi feito utilizando arquivos, listas duplamente encadeadas, alocaçã
 
 
 - ### Arquivos:
-
+  Arquivos são ferramentas que utilizamos para armazenar informações em midia digital. Usando a biblioteca <stdlib.h> para conseguir manipular o arquivo por meio de funções específicas. No nosso projeto estamos usando o arquivo para armazenar os dados dos pacientes, conseguindo salvar os dados fornecidos pelo usuário. 
+  
 - ### Lista duplamente encadeadas:
   Como o nome já sugere, é uma lista como as outras. A grande diferença é que agora podemos percorrer a lista nos dois sentidos, ajudando a acessar diversas posições da nossa lista. Isso ocorré porque nessa lista existem dois ponteiros. O primeiro aponta para o próximo elemento da lista, enquanto o segundo ponteiro aponta para o elemento anterior. 
   No nosso sistema, nós usamos a lista duplamente encadeada para conseguir acessar os pacientes armazenados no arquivo. 
