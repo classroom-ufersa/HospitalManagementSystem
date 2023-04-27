@@ -18,7 +18,7 @@ class ListaPacientes:
         self.prev = None
 
 class Hospital:
-    def __init__(self, codigo=77, leitos=25, localizacao="", nome="", lista=None, numpacientes = 0):
+    def __init__(self, codigo=77, leitos=25, localizacao="", nome="", lista=ListaPacientes(), numpacientes = 0):
         self.codigo = codigo
         self.leitos = leitos
         self.localizacao = localizacao
@@ -121,11 +121,8 @@ def add_arquivo(h, caminho):
 def ler_arquivo(hospital, caminho):
     try:
         with open(caminho, "r") as arquivo:
-            num_pacientes = 0
-
+            paciente = Paciente()
             for linha in arquivo:
-                paciente = Paciente()
-
                 if linha.startswith("Nome:"):
                     paciente.nome = linha[6:].strip()
 
@@ -148,13 +145,9 @@ def ler_arquivo(hospital, caminho):
                     paciente.documento.rg = linha[4:].strip()
                 else:
                     raise ValueError("Documento inválido")
-
                 lista_add(hospital, paciente)
-                num_pacientes += 1
-
-        hospital.num_pacientes += num_pacientes
-        hospital.leitos -= num_pacientes
-        print(f"{num_pacientes} pacientes adicionados com sucesso.")
+                hospital.num_pacientes += 1
+                hospital.leitos -= 1
     except FileNotFoundError:
         print("Arquivo não encontrado.")
     except ValueError as e:
@@ -162,10 +155,12 @@ def ler_arquivo(hospital, caminho):
     except Exception:
         print("Ocorreu um erro na leitura do arquivo.")
 
-def busca_paciente(lista_pacientes, nome):
-    for paciente in lista_pacientes:
-        if paciente.nome == nome:
-            return paciente
+def busca_paciente(h, nome):
+    p = h.lista
+    while p != None:
+        if p.paciente.nome == nome:
+            return p
+        p = p.next
     print(f"Paciente {nome} não encontrado na lista.")
     return None
 
@@ -200,3 +195,18 @@ def edita_paciente(p):
             print("Opcao invalida!")
             return
         print("Paciente editado com sucesso!")
+
+def excluir_paciente (paciente,hospital):
+    if paciente == None:
+        return paciente
+    else:
+        if hospital.lista == paciente:
+            hospital.lista = paciente.next
+        else:
+            paciente.prev.next = paciente.next
+        if paciente.next != None:
+            paciente.next.prev = paciente.prev
+        hospital.leitos += 1
+        hospital.num_pacientes -= 1
+        print("Paciente excluido com sucesso!")
+    return hospital

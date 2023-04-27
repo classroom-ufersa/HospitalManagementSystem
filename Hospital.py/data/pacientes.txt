@@ -1,6 +1,18 @@
-Nome: A
-Enfermidade: a
-Receita: a
+Nome: Jhoan Fernandes
+Enfermidade: Dengue
+Receita: Repouso
+Internado: Nao
+CPF: 453.566.756-56
+
+Nome: Lucas Oliveira
+Enfermidade: Perna Quebrada
+Receita: Injecao
 Internado: Sim
-CPF: 123.322.323-32
+CPF: 453.566.756-56
+
+Nome: Luis Felipe
+Enfermidade: Gripe
+Receita: injecao
+Internado: Nao
+CPF: 453.566.756-56
 

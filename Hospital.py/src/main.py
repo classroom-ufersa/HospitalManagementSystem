@@ -31,7 +31,7 @@ while controle != 8:
     controle = int(input("Digite o numero da opcao desejada: "))
 
     if controle == 1:
-        HealCare = cadastra_paciente(HealCare, quantidade)
+        HealCare = cadastra_paciente(HealCare, HealCare.num_pacientes)
         arquivo = add_arquivo(HealCare, caminho)
     elif controle == 2:
         nome = input("Insira o nome do paciente que deseja excluir: ")
@@ -43,27 +43,26 @@ while controle != 8:
     elif controle == 4:
         nome = input("Insira o nome do paciente que deseja buscar: ")
         pacientetemp = busca_paciente(HealCare, nome)
-        print("\nNome: {}\n".format(pacientetemp.pacientes.nome))
-        print("Enfermidade: {}\n".format(pacientetemp.pacientes.enfermidade))
-        print("Receita: {}\n".format(pacientetemp.pacientes.receita))
-        print("Internado: {}\n".format("Sim" if pacientetemp.pacientes.internado else "Nao"))
-        print("Documento: {}\n".format(pacientetemp.pacientes.documento.rg))
+        print("\nNome: {}".format(pacientetemp.paciente.nome))
+        print("Enfermidade: {}".format(pacientetemp.paciente.enfermidade))
+        print("Receita: {}".format(pacientetemp.paciente.receita))
+        print("Internado: {}".format("Sim" if pacientetemp.paciente.internado else "Nao"))
+        print("Documento: {}".format(pacientetemp.paciente.documento.rg))
     elif controle == 5:
         nome = input("Insira o nome do paciente que deseja editar: ")
-        pacientetemp = busca_paciente(HealCare.lista, nome)
+        pacientetemp = busca_paciente(HealCare, nome)
         if pacientetemp is not None:
-            edita_paciente(pacientetemp)
+            edita_paciente(pacientetemp.paciente)
             add_arquivo(HealCare, caminho)
         else:
             print("Paciente nao encontrado.")
-
     elif controle == 6:
         if HealCare.leitos > 0:
-            print("Existem {} leitos disponiveis no momento de um total de {}.\n\n".format(HealCare.leitos, Leitos))
+            print("Existem {} leitos disponiveis no momento de um total de 25.\n\n".format(HealCare.leitos))
         else:
-            print("Nao existem leitos disponiveis no momento todos os {} estao sendo utilizados!\n\n".format(Leitos))
+            print("Nao existem leitos disponiveis no momento todos os 25 estao sendo utilizados!\n")
     elif controle == 7:
-        print("Existem um total de {} pacientes cadastrados!\n\n".format(Leitos - HealCare.leitos))
+        print("Existem um total de {} pacientes cadastrados!\n".format(HealCare.num_pacientes))
     elif controle == 8:
         print("Obrigado por utilizar meu programa!\n")
     else:
