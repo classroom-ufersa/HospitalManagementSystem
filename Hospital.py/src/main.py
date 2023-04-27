@@ -1,10 +1,6 @@
 from hospital import *
 import os
 
-# limpa o prompt
-def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
-clear_screen()
 controle = 0
 caminho = "C:\\Users\\jhoan\\Desktop\\VScode\\GitHub\\HospitalManagementSystem\\Hospital.py\\data\\pacientes.txt"
 try:
@@ -29,7 +25,6 @@ while controle != 8:
     print("[8] Sair")
     print("========================================\n")
     controle = int(input("Digite o numero da opcao desejada: "))
-    clear_screen()
     if controle == 1:
         HealCare = cadastra_paciente(HealCare, HealCare.num_pacientes)
         arquivo = add_arquivo(HealCare, caminho)
