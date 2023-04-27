@@ -4,9 +4,9 @@ class Document:
         self.rg = rg
 
 class Paciente:
-    def __init__(self, nome="", documento=Document(), enfermidade="", internado=0, receita=""):
+    def __init__(self, nome="", documento=None, enfermidade="", internado=0, receita=""):
         self.nome = nome
-        self.documento = documento
+        self.documento = documento if documento is not None else Document()
         self.enfermidade = enfermidade
         self.internado = internado
         self.receita = receita
@@ -121,39 +121,46 @@ def add_arquivo(h, caminho):
 def ler_arquivo(hospital, caminho):
     try:
         with open(caminho, "r") as arquivo:
-            paciente = Paciente()
+            num_pacientes = 0
+
+            # Cria uma lista para armazenar todos os pacientes lidos do arquivo
+            pacientes = []
+
+            # Lê o arquivo linha por linha
             for linha in arquivo:
-                if linha.startswith("Nome:"):
-                    paciente.nome = linha[6:].strip()
+                paciente = Paciente()
 
-                linha = arquivo.readline()
-                if linha.startswith("Enfermidade:"):
-                    paciente.enfermidade = linha[13:].strip()
+                # Lê as informações do paciente até encontrar uma linha em branco
+                while linha.strip() != "":
+                    if linha.startswith("Nome:"):
+                        paciente.nome = linha[6:].strip()
+                    elif linha.startswith("Enfermidade:"):
+                        paciente.enfermidade = linha[13:].strip()
+                    elif linha.startswith("Receita:"):
+                        paciente.receita = linha[9:].strip()
+                    elif linha.startswith("Internado:"):
+                        paciente.internado = 1 if linha[11:].strip().lower() == "sim" else 0
+                    elif linha.startswith("CPF:"):
+                        paciente.documento.cpf = linha[5:].strip()
+                    elif linha.startswith("RG:"):
+                        paciente.documento.rg = linha[4:].strip()
 
-                linha = arquivo.readline()
-                if linha.startswith("Receita:"):
-                    paciente.receita = linha[8:].strip()
+                    linha = arquivo.readline()
 
-                linha = arquivo.readline()
-                if linha.startswith("Internado:"):
-                    paciente.internado = 1 if linha[10:].strip().lower() == "sim" else 0
+                # Adiciona o paciente lido à lista de pacientes
+                pacientes.append(paciente)
 
-                linha = arquivo.readline()
-                if linha.startswith("CPF:"):
-                    paciente.documento.cpf = linha[5:].strip()
-                elif linha.startswith("RG:"):
-                    paciente.documento.rg = linha[4:].strip()
-                else:
-                    raise ValueError("Documento inválido")
+            # Adiciona todos os pacientes da lista ao hospital
+            for paciente in pacientes:
                 lista_add(hospital, paciente)
                 hospital.num_pacientes += 1
                 hospital.leitos -= 1
+            return hospital
+
     except FileNotFoundError:
-        print("Arquivo não encontrado.")
-    except ValueError as e:
-        print(f"Erro na leitura do arquivo: {str(e)}")
-    except Exception:
-        print("Ocorreu um erro na leitura do arquivo.")
+        print("Arquivo nao encontrado.\n")
+        return
+
 
 def busca_paciente(h, nome):
     p = h.lista

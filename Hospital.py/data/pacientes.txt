@@ -1,18 +1,30 @@
-Nome: Jhoan Fernandes
-Enfermidade: Dengue
-Receita: Repouso
-Internado: Nao
-CPF: 453.566.756-56
+Nome: Caio Moises
+Enfermidade: Perna quebrada
+Receita: Injecao bezetacil
+Internado: Sim
+RG: 213.355.657
 
-Nome: Lucas Oliveira
-Enfermidade: Perna Quebrada
+Nome: Jhoan Fernandes
+Enfermidade: Gripe
+Receita: Mel
+Internado: Sim
+CPF: 234.544.777-77
+
+Nome: Joao Lucas
+Enfermidade: Febre
+Receita: Ibuprofeno
+Internado: Sim
+RG: 231.323.543
+
+Nome: Luiz Felipe
+Enfermidade: Dengue
 Receita: Injecao
 Internado: Sim
-CPF: 453.566.756-56
+RG: 213.321.321
 
-Nome: Luis Felipe
-Enfermidade: Gripe
-Receita: injecao
+Nome: Neymar Junior
+Enfermidade: Dedo quebrado
+Receita: Gesso
 Internado: Nao
-CPF: 453.566.756-56
+RG: 342.433.543
 
