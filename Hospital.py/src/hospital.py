@@ -57,11 +57,11 @@ def cadastra_paciente(hospital, qnt):
         print("Opcao invalida.\n")
         return
     # Adicionando o paciente na lista do hospital
-    lista_add(hospital, paciente)
+    hospital.lista.lista_add(paciente) # aqui a chamada correta
     hospital.num_pacientes += 1
     hospital.leitos -= 1
     print("Paciente cadastrado com sucesso.\n\n")
-    return hospital
+
 
 def lista_add(self, paciente):
     # Encontrar a posição correta para inserir o novo paciente
@@ -217,3 +217,13 @@ def excluir_paciente (paciente,hospital):
         hospital.num_pacientes -= 1
         print("Paciente excluido com sucesso!")
     return hospital
+
+def dados_hospital(h):
+    print("+----------------------------------------------------------------+")
+    print("| Bem-vindo ao Hospital {}                                 |".format(h.nome))
+    print("| Codigo: {:d}                                                     |".format(h.codigo))
+    print("| Localizado na {}                               |".format(h.localizacao))
+    print("| Horario de funcionamento das 07:00 as 21:00                    |")
+    print("|                                                                |")
+    print("| Socios: Jhoan Fernandes Felipe Tomaz                           |")
+    print("+----------------------------------------------------------------+\n")

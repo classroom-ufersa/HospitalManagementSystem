@@ -1,23 +1,19 @@
 from hospital import *
 import os
 
-# limpa o prompt
-def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
 controle = 0
 caminho = "C:\\Users\\jhoan\\Desktop\\VScode\\GitHub\\HospitalManagementSystem\\Hospital.py\\data\\pacientes.txt"
 try:
-    arquivo = open(caminho, "r")
+    arquivo = open(caminho, "r+")
 except IOError:
     print("Erro ao abrir arquivo!")
     exit(1)
-
 HealCare = lista_cria()
 ler_arquivo(HealCare, caminho)
-#dados_hospital(HealCare)
+dados_hospital(HealCare)
 
 while controle != 8:
-    print("Menu:")
+    print("Menu: ")
     print("========================================")
     print("[1] Cadastrar paciente")
     print("[2] Excluir paciente")
@@ -29,7 +25,6 @@ while controle != 8:
     print("[8] Sair")
     print("========================================\n")
     controle = int(input("Digite o numero da opcao desejada: "))
-
     if controle == 1:
         HealCare = cadastra_paciente(HealCare, HealCare.num_pacientes)
         arquivo = add_arquivo(HealCare, caminho)
@@ -67,4 +62,4 @@ while controle != 8:
         print("Obrigado por utilizar meu programa!\n")
     else:
         print("opcao invalida!\n")
-
+        
