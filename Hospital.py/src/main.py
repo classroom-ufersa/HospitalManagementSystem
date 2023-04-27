@@ -13,7 +13,7 @@ ler_arquivo(HealCare, caminho)
 dados_hospital(HealCare)
 
 while controle != 8:
-    print("Menu:")
+    print("Menu: ")
     print("========================================")
     print("[1] Cadastrar paciente")
     print("[2] Excluir paciente")
