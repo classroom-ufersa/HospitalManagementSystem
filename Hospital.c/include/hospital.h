@@ -1,8 +1,5 @@
 // TAD: Hospital
 
-typedef union document Document;
-typedef struct pacientes Pacientes;
-typedef struct listapacientes Listapacientes;
 typedef struct hospital Hospital;
 
 // adiciona pacientes ao arquivo;
