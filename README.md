@@ -1,19 +1,29 @@
-## HospitalManagementSystem
-# Sistema Hospitalar < HealCare >
+# Sistema Hospitalar `HealCare`
 
-## INTRODUÇÃO
+## Tópicos
 
-  O sistema foi desenvolvido na linguigem C, utilizando vários funções presentes na linguagem. O intuito desse projeto é criar um sistema que consiga gerenciar leitos de hospital, conseguindo cadastrar o paciente, exibir o leito disponíveis e exibir os dados do paciente. O nome do hospital < HealCare > foi gerado automaticamente por uma IA, a cidade na qual o hospital está localizado é a junção dos nomes das cidades dos contribuientes do projeto, sendo ela Umarigomes. Lembrando que este sistema é de um hospital ficticio sendo utilizado para uso acâdemico.
+- [Problemática](#problemática)
+- [Introdução](#introdução)
+- [Funções do programa](#funções-do-programa)
+- [Tecnologias utilizadas](#tecnologias-utilizadas)
+- [Como Contribuir](#como-contribuir)
   
-## PROBLEMÁTICA 
+### Problemática
 
-Criar um sistema é responsável por gerir pacientes de um hospital dando ao usuário uma grande diversidade de opções para realizar o cadastro, sendo elas:
+Criar um sistema é responsável por gerir pacientes de um hospital dando ao usuário uma grande diversidade de opções para realizar o cadastro.
+
+### Introdução
+
+O sistema foi desenvolvido na `linguigem C` e `Python`, utilizando vários funções presentes nas linguagems. O intuito desse projeto é criar um sistema que consiga gerenciar leitos de hospital.
+
+O nome do hospital `HealCare` foi gerado automaticamente por uma IA, a cidade na qual o hospital está localizado é a junção dos nomes das cidades dos contribuientes do projeto, sendo ela Umarigomes. Lembrando que este sistema é de um hospital ficticio sendo utilizado para uso acâdemico.
+
+### Funções do programa
 
 - Cadastrar Paciente:
   
   - Responsável por coletar os dados do paciente e formatar os nomes no padrão de busca.
   
-
 - Excluir Paciente:
   
   - Responsavel por apagar os dados do paciente do arquivo e liberar a memória ocupada por ele.
@@ -33,18 +43,16 @@ Criar um sistema é responsável por gerir pacientes de um hospital dando ao usu
 - Consultar quantidade de pacientes:
   - Exibe o número de pacientes cadastrados no hospital.
 
-## Tecnologias utilizadas
+### Tecnologias utilizadas
 
 O projeto foi feito utilizando arquivos, listas duplamente encadeadas, alocação dinâmica. Mas o que são essas coisas?
 
-
 - Arquivos:
-  - Arquivos são ferramentas que utilizamos para armazenar informações em midia digital. Usando a biblioteca <stdlib.h> para conseguir manipular o arquivo por meio de funções específicas. No nosso projeto estamos usando o arquivo para armazenar os dados dos pacientes, conseguindo salvar os dados fornecidos pelo usuário. 
+  - Arquivos são ferramentas que utilizamos para armazenar informações em midia digital. Usando a biblioteca <stdlib.h> para conseguir manipular o arquivo por meio de funções específicas. No nosso projeto estamos usando o arquivo para armazenar os dados dos pacientes, conseguindo salvar os dados fornecidos pelo usuário.
   
 - Lista duplamente encadeadas:
 
-  - Como o nome já sugere, é uma lista como as outras. A grande diferença é que agora podemos percorrer a lista nos dois sentidos, ajudando a acessar diversas posições da nossa lista. Isso ocorré porque nessa lista existem dois ponteiros. O primeiro aponta para o próximo elemento da lista, enquanto o segundo ponteiro aponta para o elemento anterior. 
-  No nosso sistema, nós usamos a lista duplamente encadeada para conseguir acessar os pacientes armazenados no arquivo. 
+  - Como o nome já sugere, é uma lista como as outras. A grande diferença é que agora podemos percorrer a lista nos dois sentidos, ajudando a acessar diversas posições da nossa lista. Isso ocorré porque nessa lista existem dois ponteiros. O primeiro aponta para o próximo elemento da lista, enquanto o segundo ponteiro aponta para o elemento anterior. No nosso sistema, nós usamos a lista duplamente encadeada para conseguir acessar os pacientes armazenados no arquivo.
 
 - Alocação dinamica:
   
@@ -57,3 +65,7 @@ O projeto foi feito utilizando arquivos, listas duplamente encadeadas, alocaçã
 - Tipos Estruturados:
   
   - Servem para agrupar diversas variáveis em um único contexto, fazendo isso conseguimos criar novos tipos de variáveis. No nosso projeto usamos tipos estruturados para dar caracteristicas ao hospital e aos pacientes, conseguindo manipular diversas variáveis diferentes.
+
+### Como Contribuir
+
+- Caso queira contribuir para o `projeto`, você pode clonar o repositório, fazer suas alterações e enviar um pull request. Suas contribuições serão muito bem-vindas!
