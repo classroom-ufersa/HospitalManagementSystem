@@ -7,14 +7,14 @@ RG: 213.355.657
 Nome: Francisco Pedro
 Enfermidade: Dor de cabeca
 Receita: Dorfles
-Internado: Nao
+Internado: Sim
 CPF: 456.765.765-54
 
 Nome: Jhoan Fernandes
 Enfermidade: Gripe
-Receita: Mel
-Internado: Sim
-CPF: 777.777.777-77
+Receita: Redoxon
+Internado: Nao
+RG: 777.777.777
 
 Nome: Joao Lucas
 Enfermidade: Febre

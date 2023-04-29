@@ -41,26 +41,37 @@ int main(void)
         case 2:
             printf("Insira o nome do paciente que deseja excluir: ");
             scanf(" %[^\n]s", nome);
+            corrige_nome(nome);
             pacientetemp = busca_paciente(HealCare->lista, nome);
             excluir_paciente(pacientetemp, HealCare);
             add_arquivo(HealCare, caminho);
             break;
+            
         case 3:
             lista_imprime(HealCare->lista);
             break;
         case 4:
             printf("Insira o nome do paciente que deseja buscar: ");
             scanf(" %[^\n]s", nome);
+            corrige_nome(nome);
             pacientetemp = busca_paciente(HealCare->lista, nome);
             printf("\nNome: %s\n", pacientetemp->pacientes->nome);
             printf("Enfermidade: %s\n", pacientetemp->pacientes->enfermidade);
             printf("Receita: %s\n", pacientetemp->pacientes->receita);
             printf("Internado: %s\n", pacientetemp->pacientes->internado ? "Sim" : "Nao");
-            printf("Documento: %s\n\n", pacientetemp->pacientes->documento.rg);
+            if (strlen(pacientetemp->pacientes->documento.cpf) == 14)
+            {
+                printf("CPF: %s\n", pacientetemp->pacientes->documento.cpf);
+            }
+            else
+            {
+                printf("RG: %s\n", pacientetemp->pacientes->documento.rg);
+            }
             break;
         case 5:
             printf("Insira o nome do paciente que deseja editar: ");
             scanf(" %[^\n]s", nome);
+            corrige_nome(nome);
             pacientetemp = busca_paciente(HealCare->lista, nome);
             edita_paciente(pacientetemp);
             add_arquivo(HealCare, caminho);

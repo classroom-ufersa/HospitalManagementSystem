@@ -29,7 +29,7 @@ struct listapacientes
     struct listapacientes *prev;
 };
 
-void corrige_nome(char nome [])
+void corrige_nome(char nome[])
 {
     // Verificar se o nome contém apenas letras e espaços
     int tamanho_do_nome = strlen(nome);
@@ -193,7 +193,7 @@ Listapacientes *busca_paciente(Listapacientes *l, char nome[])
             return p;
         }
     }
-    return NULL; // nao achou
+    return NULL;
 }
 
 void edita_paciente(Listapacientes *p)
@@ -283,7 +283,14 @@ void lista_imprime(Listapacientes *l)
         printf("Enfermidade: %s\n", p->pacientes->enfermidade);
         printf("Receita: %s\n", p->pacientes->receita);
         printf("Internado: %s\n", p->pacientes->internado ? "Sim" : "Nao");
-        printf("Documento: %s\n", p->pacientes->documento.cpf[0] != '\0' ? p->pacientes->documento.cpf : p->pacientes->documento.rg);
+        if (strlen(p->pacientes->documento.cpf) == 14)
+        {
+            printf("CPF: %s\n", p->pacientes->documento.cpf);
+        }
+        else
+        {
+            printf("RG: %s\n", p->pacientes->documento.rg);
+        }
         printf("\n");
         p = p->next;
     }
