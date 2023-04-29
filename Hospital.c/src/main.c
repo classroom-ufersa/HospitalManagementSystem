@@ -46,7 +46,7 @@ int main(void)
             add_arquivo(HealCare, caminho);
             break;
         case 3:
-            lista_imprime(HealCare);
+            lista_imprime(HealCare->lista);
             break;
         case 4:
             printf("Insira o nome do paciente que deseja buscar: ");

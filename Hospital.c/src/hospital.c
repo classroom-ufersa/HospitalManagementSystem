@@ -112,9 +112,9 @@ Hospital *excluir_paciente(Listapacientes *p, Hospital *h)
     else
     {
         // retira o elemento
-        if (h == p) // testa se é o primeiro elemento
+        if (h->lista == p) // testa se é o primeiro elemento
         {
-            h = p->next;
+            h->lista = p->next;
         }
         else
         {
