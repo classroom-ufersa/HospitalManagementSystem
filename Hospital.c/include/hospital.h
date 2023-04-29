@@ -16,6 +16,3 @@ void ler_arquivo(Hospital *h, char *caminho, int *qnt);
 
 // exclui um paciente
 Hospital *excluir_paciente(Listapacientes *p, Hospital *h);
-
-// libera a lista
-
