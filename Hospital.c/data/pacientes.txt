@@ -4,9 +4,15 @@ Receita: Injecao bezetacil
 Internado: Sim
 RG: 213.355.657
 
+Nome: Francisco Pedro
+Enfermidade: Dor de cabeca
+Receita: Dorfles
+Internado: Sim
+CPF: 456.765.765-54
+
 Nome: Jhoan Fernandes
 Enfermidade: Gripe
-Receita: Mel
+Receita: Repouso um dia
 Internado: Sim
 CPF: 777.777.777-77
 
@@ -24,7 +30,7 @@ RG: 213.321.321
 
 Nome: Neymar Junior
 Enfermidade: Dedo quebrado
-Receita: Gesso
-Internado: Nao
+Receita: gesso duplo
+Internado: Sim
 RG: 342.433.543
 
