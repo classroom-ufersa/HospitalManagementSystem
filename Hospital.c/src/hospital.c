@@ -126,7 +126,7 @@ Hospital *excluir_paciente(Listapacientes *p, Hospital *h)
         }
         free(p);
         h->leitos++;
-        printf("Paciente excluido com sucesso!\n");
+        printf("Paciente excluido com sucesso!\n\n");
     }
     return h;
 }

@@ -12,8 +12,8 @@ CPF: 456.765.765-54
 
 Nome: Jhoan Fernandes
 Enfermidade: Gripe
-Receita: Redoxon
-Internado: Nao
+Receita: Repouso um dia
+Internado: Sim
 RG: 777.777.777
 
 Nome: Joao Lucas
@@ -33,10 +33,4 @@ Enfermidade: Dedo quebrado
 Receita: gesso duplo
 Internado: Sim
 RG: 342.433.543
-
-Nome: Paulo Oliveira
-Enfermidade: Dor de barriga
-Receita: Buscopan
-Internado: Sim
-CPF: 688.768.945-23
 

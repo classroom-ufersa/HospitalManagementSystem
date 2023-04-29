@@ -206,7 +206,11 @@ void edita_paciente(Listapacientes *p)
     printf("Documento: %s\n\n", p->pacientes->documento.rg);
     printf("Deseja mesmo editar o paciente acima? (1-sim)(2-nao)\n");
     scanf("%d", &cont);
-    if (cont == 1)
+    if (cont == 2)
+    {
+        printf("\n");
+    }
+    else if (cont == 1)
     {
 
         int opcao;
@@ -223,6 +227,7 @@ void edita_paciente(Listapacientes *p)
         case 1:
             printf("\nDigite o novo nome: ");
             scanf(" %[^\n]s", p->pacientes->nome);
+            corrige_nome(p->pacientes->nome);
             break;
         case 2:
             printf("\nDigite a nova enfermidade: ");
@@ -235,21 +240,35 @@ void edita_paciente(Listapacientes *p)
         case 4:
             printf("\nO paciente esta internado? (1-sim / 0-nao): ");
             scanf("%d", &p->pacientes->internado);
+            if (p->pacientes->internado != 1 || p->pacientes->internado != 0)
+            {
+                printf("Opcao invalida!\n");
+            }
+
             break;
         case 5:
             printf("\nDigite '1' para editar o CPF ou '2' para editar o RG: ");
             char opcao_documento;
             scanf(" %c", &opcao_documento);
-
             if (opcao_documento == '1')
             {
-                printf("Digite o novo CPF (XXX.YYY.ZZZ-SS): ");
+                printf("Digite o CPF do paciente (XXX.YYY.ZZZ-SS): ");
                 scanf(" %[^\n]s", p->pacientes->documento.cpf);
+                if (strlen(p->pacientes->documento.cpf) != 14)
+                {
+                    printf("Erro: entrada invalida. Digite um CPF válido.\n");
+                    exit(1);
+                }
             }
             else if (opcao_documento == '2')
             {
-                printf("Digite o novo RG (XXX.YYY.ZZZ): ");
+                printf("Digite o RG do paciente (XXX.YYY.ZZZ): ");
                 scanf(" %[^\n]s", p->pacientes->documento.rg);
+                if (strlen(p->pacientes->documento.rg) != 11)
+                {
+                    printf("Erro: entrada invalida. Digite um RG válido.\n");
+                    exit(1);
+                }
             }
             else
             {
@@ -261,6 +280,11 @@ void edita_paciente(Listapacientes *p)
             break;
         }
     }
+    else
+    {
+        printf("opcao invalida!");
+    }
+    printf("\n");
 }
 
 void lista_libera(Listapacientes *l)
