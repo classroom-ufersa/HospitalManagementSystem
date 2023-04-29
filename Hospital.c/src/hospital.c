@@ -5,28 +5,6 @@
 #define Leitos 25
 #define codigohospital 77
 
-union document
-{
-    char cpf[15];
-    char rg[12];
-};
-
-struct pacientes
-{
-    char nome[MaxNome];
-    Document documento;
-    char enfermidade[50];
-    int internado; // sim == 1, nao == 0
-    char receita[100];
-};
-
-struct listapacientes
-{
-    Pacientes *pacientes;
-    struct listapacientes *next;
-    struct listapacientes *prev;
-};
-
 struct hospital
 {
     int codigo;
