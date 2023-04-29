@@ -25,6 +25,12 @@ RG: 213.321.321
 Nome: Neymar Junior
 Enfermidade: Dedo quebrado
 Receita: Gesso
-Internado: Nao
+Internado: Sim
 RG: 342.433.543
+
+Nome: Paulo Oliveira
+Enfermidade: Dedo quebrado
+Receita: injecao
+Internado: Sim
+RG: 123.435.765
 

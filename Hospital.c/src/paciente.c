@@ -89,7 +89,7 @@ Pacientes paciente_preenche(void)
     return paciente;
 }
 
-void paciente_ler(Listapacientes *p, FILE* arquivo)
+void paciente_add(Listapacientes *p, FILE* arquivo)
 {
         Pacientes paciente = *(p->next->pacientes);
         fprintf(arquivo, "Nome: %s\n", paciente.nome);
@@ -139,4 +139,17 @@ Listapacientes *lista_add(Listapacientes *l, Pacientes paciente)
     }
     p->next = novo_no;
     return l;
+}
+
+Listapacientes *busca_paciente(Listapacientes *h, char nome[])
+{
+    Listapacientes *p;
+    for (p = h; p != NULL; p = p->next)
+    {
+        if (strcmp(p->pacientes->nome, nome) == 0)
+        {
+            return p;
+        }
+    }
+    return NULL; // nao achou
 }

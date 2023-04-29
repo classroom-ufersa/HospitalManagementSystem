@@ -41,7 +41,7 @@ int main(void)
         case 2:
             printf("Insira o nome do paciente que deseja excluir: ");
             scanf(" %[^\n]s", nome);
-            pacientetemp = busca_paciente(HealCare, nome);
+            pacientetemp = busca_paciente(HealCare->lista, nome);
             excluir_paciente(pacientetemp, HealCare);
             add_arquivo(HealCare, caminho);
             break;
@@ -51,7 +51,7 @@ int main(void)
         case 4:
             printf("Insira o nome do paciente que deseja buscar: ");
             scanf(" %[^\n]s", nome);
-            pacientetemp = busca_paciente(HealCare, nome);
+            pacientetemp = busca_paciente(HealCare->lista, nome);
             printf("\nNome: %s\n", pacientetemp->pacientes->nome);
             printf("Enfermidade: %s\n", pacientetemp->pacientes->enfermidade);
             printf("Receita: %s\n", pacientetemp->pacientes->receita);
@@ -61,7 +61,7 @@ int main(void)
         case 5:
             printf("Insira o nome do paciente que deseja editar: ");
             scanf(" %[^\n]s", nome);
-            pacientetemp = busca_paciente(HealCare, nome);
+            pacientetemp = busca_paciente(HealCare->lista, nome);
             edita_paciente(pacientetemp);
             add_arquivo(HealCare, caminho);
             break;

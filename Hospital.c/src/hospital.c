@@ -69,7 +69,7 @@ FILE *add_arquivo(Hospital *h, char *caminho)
     Listapacientes *p = h->lista;
     while (p->next != NULL)
     {
-        paciente_ler(p,arquivo);
+        paciente_add(p, arquivo);
         p = p->next;
     }
     fclose(arquivo);
@@ -116,19 +116,6 @@ void ler_arquivo(Hospital *h, char *caminho, int *num_pacientes)
     fclose(arquivo);
     *num_pacientes = i;
     h->leitos -= i;
-}
-
-Listapacientes *busca_paciente(Hospital *h, char nome[])
-{
-    Listapacientes *p;
-    for (p = h->lista; p != NULL; p = p->next)
-    {
-        if (strcmp(p->pacientes->nome, nome) == 0)
-        {
-            return p;
-        }
-    }
-    return NULL; // nao achou
 }
 
 void edita_paciente(Listapacientes *p)
@@ -207,9 +194,9 @@ Hospital *excluir_paciente(Listapacientes *p, Hospital *h)
     else
     {
         // retira o elemento
-        if (h->lista == p) // testa se é o primeiro elemento
+        if (h == p) // testa se é o primeiro elemento
         {
-            h->lista = p->next;
+            h = p->next;
         }
         else
         {
