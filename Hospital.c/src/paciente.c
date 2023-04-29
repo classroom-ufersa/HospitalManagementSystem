@@ -29,6 +29,43 @@ struct listapacientes
     struct listapacientes *prev;
 };
 
+void corrige_nome(char nome [])
+{
+    // Verificar se o nome contém apenas letras e espaços
+    int tamanho_do_nome = strlen(nome);
+    int i, j;
+    char ultimo_caractere = ' ';
+
+    // verificando se possui apenas letras e espaços
+    for (i = 0, j = 0; i < tamanho_do_nome; i++)
+    {
+        if (isalpha(nome[i]) || nome[i] == ' ')
+        {
+            // Remover dois espaços consecutivos
+            if (nome[i] == ' ' && ultimo_caractere == ' ')
+            {
+                continue;
+            }
+            nome[j] = nome[i];
+            j++;
+            ultimo_caractere = nome[i];
+        }
+    }
+    nome[j] = '\0';
+
+    nome[0] = toupper(nome[0]); // convertendo o primeiro caractere para maiúsculo
+    // Percorra os caracteres restantes e convertendo para minúsculo
+    for (i = 1; i < j; i++)
+    {
+        nome[i] = tolower(nome[i]);
+        // Verificando se o caractere anterior é um espaço em branco. Se sim, converte o caractere atual para maiúsculo
+        if (nome[i - 1] == ' ')
+        {
+            nome[i] = toupper(nome[i]);
+        }
+    }
+}
+
 Listapacientes *lista_cria(void)
 {
     Listapacientes *l = (Listapacientes *)malloc(sizeof(Listapacientes));
@@ -38,25 +75,12 @@ Listapacientes *lista_cria(void)
 Pacientes paciente_preenche(void)
 {
     Pacientes paciente;
-    int i;
     char opcao_documento;
 
+    // Ler o nome do paciente
     printf("Digite o nome do paciente: ");
-    scanf(" %[^\n]s", paciente.nome);
-    // Formatando nome
-    int tamanho_do_nome = strlen(paciente.nome);
-    paciente.nome[0] = toupper(paciente.nome[0]); // convertendo o primeiro caractere para maiúsculo
-    // Percorra os caracteres restantes e convertendo para minúsculo
-    for (i = 1; i < tamanho_do_nome; i++)
-    {
-        paciente.nome[i] = tolower(paciente.nome[i]);
-        // Verificando se o caractere anterior é um espaço em branco. Se sim, converte o caractere atual para maiúsculo
-        if (paciente.nome[i - 1] == ' ')
-        {
-            paciente.nome[i] = toupper(paciente.nome[i]);
-        }
-    }
-
+    scanf(" %[^\n]", paciente.nome);
+    corrige_nome(paciente.nome);
     printf("Digite a enfermidade do paciente: ");
     scanf(" %[^\n]s", paciente.enfermidade);
 
@@ -65,21 +89,39 @@ Pacientes paciente_preenche(void)
 
     printf("Internado? (1-sim) (0-nao): ");
     scanf("%d", &paciente.internado);
-
+    if (paciente.internado != 1 && paciente.internado != 0)
+    {
+        printf("Erro: entrada invalida\n");
+        exit(1);
+    }
     // Pedir para o usuário escolher qual documento cadastrar
     printf("Digite '1' para cadastrar o CPF ou '2' para cadastrar o RG: ");
     scanf(" %c", &opcao_documento);
-
-    // Ler o documento escolhido pelo usuário
+    if (opcao_documento != '1' && opcao_documento != '2')
+    {
+        printf("Erro: entrada invalida\n");
+        exit(1);
+    }
+    // lendo documento
     if (opcao_documento == '1')
     {
         printf("Digite o CPF do paciente (XXX.YYY.ZZZ-SS): ");
         scanf(" %[^\n]s", paciente.documento.cpf);
+        if (strlen(paciente.documento.cpf) != 14)
+        {
+            printf("Erro: entrada invalida. Digite um CPF válido.\n");
+            exit(1);
+        }
     }
     else if (opcao_documento == '2')
     {
         printf("Digite o RG do paciente (XXX.YYY.ZZZ): ");
         scanf(" %[^\n]s", paciente.documento.rg);
+        if (strlen(paciente.documento.rg) != 11)
+        {
+            printf("Erro: entrada invalida. Digite um RG válido.\n");
+            exit(1);
+        }
     }
     else
     {
@@ -89,22 +131,22 @@ Pacientes paciente_preenche(void)
     return paciente;
 }
 
-void paciente_add(Listapacientes *p, FILE* arquivo)
+void paciente_add(Listapacientes *p, FILE *arquivo)
 {
-        Pacientes paciente = *(p->next->pacientes);
-        fprintf(arquivo, "Nome: %s\n", paciente.nome);
-        fprintf(arquivo, "Enfermidade: %s\n", paciente.enfermidade);
-        fprintf(arquivo, "Receita: %s\n", paciente.receita);
-        fprintf(arquivo, "Internado: %s\n", paciente.internado ? "Sim" : "Nao");
-        if (strlen(paciente.documento.cpf) == 14)
-        {
-            fprintf(arquivo, "CPF: %s\n", paciente.documento.cpf);
-        }
-        else
-        {
-            fprintf(arquivo, "RG: %s\n", paciente.documento.rg);
-        }
-        fprintf(arquivo, "\n");
+    Pacientes paciente = *(p->next->pacientes);
+    fprintf(arquivo, "Nome: %s\n", paciente.nome);
+    fprintf(arquivo, "Enfermidade: %s\n", paciente.enfermidade);
+    fprintf(arquivo, "Receita: %s\n", paciente.receita);
+    fprintf(arquivo, "Internado: %s\n", paciente.internado ? "Sim" : "Nao");
+    if (strlen(paciente.documento.cpf) == 14)
+    {
+        fprintf(arquivo, "CPF: %s\n", paciente.documento.cpf);
+    }
+    else
+    {
+        fprintf(arquivo, "RG: %s\n", paciente.documento.rg);
+    }
+    fprintf(arquivo, "\n");
 }
 
 Listapacientes *lista_add(Listapacientes *l, Pacientes paciente)
