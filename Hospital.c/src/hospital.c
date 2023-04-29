@@ -66,27 +66,12 @@ FILE *add_arquivo(Hospital *h, char *caminho)
         printf("Erro ao abrir o arquivo.\n");
         exit(1);
     }
-
     Listapacientes *p = h->lista;
     while (p->next != NULL)
     {
-        Pacientes paciente = *(p->next->pacientes);
-        fprintf(arquivo, "Nome: %s\n", paciente.nome);
-        fprintf(arquivo, "Enfermidade: %s\n", paciente.enfermidade);
-        fprintf(arquivo, "Receita: %s\n", paciente.receita);
-        fprintf(arquivo, "Internado: %s\n", paciente.internado ? "Sim" : "Nao");
-        if (strlen(paciente.documento.cpf) == 14)
-        {
-            fprintf(arquivo, "CPF: %s\n", paciente.documento.cpf);
-        }
-        else
-        {
-            fprintf(arquivo, "RG: %s\n", paciente.documento.rg);
-        }
-        fprintf(arquivo, "\n");
+        paciente_ler(p,arquivo);
         p = p->next;
     }
-
     fclose(arquivo);
     return arquivo;
 }

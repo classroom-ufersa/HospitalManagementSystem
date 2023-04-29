@@ -89,7 +89,23 @@ Pacientes paciente_preenche(void)
     return paciente;
 }
 
-Pacientes paciente_ler();
+void paciente_ler(Listapacientes *p, FILE* arquivo)
+{
+        Pacientes paciente = *(p->next->pacientes);
+        fprintf(arquivo, "Nome: %s\n", paciente.nome);
+        fprintf(arquivo, "Enfermidade: %s\n", paciente.enfermidade);
+        fprintf(arquivo, "Receita: %s\n", paciente.receita);
+        fprintf(arquivo, "Internado: %s\n", paciente.internado ? "Sim" : "Nao");
+        if (strlen(paciente.documento.cpf) == 14)
+        {
+            fprintf(arquivo, "CPF: %s\n", paciente.documento.cpf);
+        }
+        else
+        {
+            fprintf(arquivo, "RG: %s\n", paciente.documento.rg);
+        }
+        fprintf(arquivo, "\n");
+}
 
 Listapacientes *lista_add(Listapacientes *l, Pacientes paciente)
 {
