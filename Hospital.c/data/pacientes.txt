@@ -14,7 +14,7 @@ Nome: Jhoan Fernandes
 Enfermidade: Gripe
 Receita: Repouso um dia
 Internado: Sim
-RG: 777.777.777
+CPF: 777.777.777-77
 
 Nome: Joao Lucas
 Enfermidade: Febre

@@ -228,14 +228,17 @@ void edita_paciente(Listapacientes *p)
             printf("\nDigite o novo nome: ");
             scanf(" %[^\n]s", p->pacientes->nome);
             corrige_nome(p->pacientes->nome);
+            printf("Paciente atualizado!\n");
             break;
         case 2:
             printf("\nDigite a nova enfermidade: ");
             scanf(" %[^\n]s", p->pacientes->enfermidade);
+            printf("Paciente atualizado!\n");
             break;
         case 3:
             printf("\nDigite a nova receita: ");
             scanf(" %[^\n]s", p->pacientes->receita);
+            printf("Paciente atualizado!\n");
             break;
         case 4:
             printf("\nO paciente esta internado? (1-sim / 0-nao): ");
@@ -243,8 +246,9 @@ void edita_paciente(Listapacientes *p)
             if (p->pacientes->internado != 1 || p->pacientes->internado != 0)
             {
                 printf("Opcao invalida!\n");
+                exit(1);
             }
-
+            printf("Paciente atualizado!\n");
             break;
         case 5:
             printf("\nDigite '1' para editar o CPF ou '2' para editar o RG: ");
@@ -259,6 +263,7 @@ void edita_paciente(Listapacientes *p)
                     printf("Erro: entrada invalida. Digite um CPF válido.\n");
                     exit(1);
                 }
+                printf("Paciente atualizado!\n");
             }
             else if (opcao_documento == '2')
             {
@@ -269,6 +274,7 @@ void edita_paciente(Listapacientes *p)
                     printf("Erro: entrada invalida. Digite um RG válido.\n");
                     exit(1);
                 }
+                printf("Paciente atualizado!\n");
             }
             else
             {
