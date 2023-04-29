@@ -35,8 +35,8 @@ Hospital *cadastra_paciente(Hospital *h, int *qnt)
         exit(1);
     }
     // Adicionando o paciente na lista do hospital
-    Pacientes p = preenche_paciente();
-    lista_add(h->lista, p);
+    Pacientes p = paciente_preenche();
+    h->lista = lista_add((h->lista), p);
     (*qnt)++;
     (h->leitos)--;
     printf("Paciente cadastrado com sucesso.\n\n");
@@ -125,7 +125,7 @@ void ler_arquivo(Hospital *h, char *caminho, int *num_pacientes)
             fgets(linha, 100, arquivo);
             sscanf(linha, "CPF: %s", paciente.documento.cpf);
         }
-        lista_add(h, paciente);
+        h->lista = lista_add(h->lista, paciente);
         i++;
     }
     fclose(arquivo);

@@ -35,7 +35,7 @@ Listapacientes *lista_cria(void)
     return l;
 }
 
-Pacientes preenche_paciente(void)
+Pacientes paciente_preenche(void)
 {
     Pacientes paciente;
     int i;
@@ -89,7 +89,9 @@ Pacientes preenche_paciente(void)
     return paciente;
 }
 
-void lista_add(Listapacientes *l, Pacientes paciente)
+Pacientes paciente_ler();
+
+Listapacientes *lista_add(Listapacientes *l, Pacientes paciente)
 {
     // Encontrar a posição correta para inserir o novo paciente
     Listapacientes *p = l;
@@ -120,5 +122,5 @@ void lista_add(Listapacientes *l, Pacientes paciente)
         p->next->prev = novo_no;
     }
     p->next = novo_no;
-    return p;
+    return l;
 }
