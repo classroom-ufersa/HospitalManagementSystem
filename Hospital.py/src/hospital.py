@@ -1,21 +1,4 @@
-class Document:
-    def __init__(self, cpf="", rg=""):
-        self.cpf = cpf
-        self.rg = rg
-
-class Paciente:
-    def __init__(self, nome="", documento=None, enfermidade="", internado=0, receita=""):
-        self.nome = nome
-        self.documento = documento if documento is not None else Document()
-        self.enfermidade = enfermidade
-        self.internado = internado
-        self.receita = receita
-
-class ListaPacientes:
-    def __init__(self, paciente=Paciente()):
-        self.paciente = paciente
-        self.next = None
-        self.prev = None
+from paciente import *
 
 class Hospital:
     def __init__(self, codigo=77, leitos=25, localizacao="", nome="", lista=ListaPacientes(), numpacientes = 0):
@@ -26,7 +9,7 @@ class Hospital:
         self.lista = lista
         self.num_pacientes = numpacientes
 
-def lista_cria():
+def hospital_cria():
     h = Hospital()
     h.lista = ListaPacientes()
     h.lista.next = None
@@ -38,47 +21,16 @@ def lista_cria():
     h.localizacao = "Cidade: UmariGomes"
     return h
 
-def cadastra_paciente(hospital, qnt):
-    if qnt == 25:
+def cadastra_paciente(hospital):
+    if hospital.num_pacientes == 25:
         print("Capacidade máxima atingida!\n")
         return
-
-    paciente = Paciente()
-    paciente.nome = input("Digite o nome do paciente: ").title()
-    paciente.enfermidade = input("Digite a enfermidade do paciente: ")
-    paciente.receita = input("Digite a receita para o paciente: ")
-    paciente.internado = int(input("Internado? (1-sim) (0-nao): "))
-    opcao_documento = input("Digite '1' para cadastrar o CPF ou '2' para cadastrar o RG: ")
-    if opcao_documento == '1':
-        paciente.documento.cpf = input("Digite o CPF do paciente (XXX.YYY.ZZZ-SS): ")
-    elif opcao_documento == '2':
-        paciente.documento.rg = input("Digite o RG do paciente (XXX.YYY.ZZZ): ")
-    else:
-        print("Opcao invalida.\n")
-        return
+    paciente = paciente_preenche()
     # Adicionando o paciente na lista do hospital
-    hospital.lista.lista_add(paciente) # aqui a chamada correta
+    lista_add(hospital, paciente)
     hospital.num_pacientes += 1
     hospital.leitos -= 1
     print("Paciente cadastrado com sucesso.\n\n")
-
-
-def lista_add(self, paciente):
-    # Encontrar a posição correta para inserir o novo paciente
-    p = self.lista
-    while p.next is not None and p.next.paciente.nome < paciente.nome:
-        p = p.next
-
-    # Criar um novo nó para o novo paciente
-    novo_no = ListaPacientes(Paciente())
-    novo_no.paciente = paciente
-
-    # Inserir o novo paciente na posição correta
-    novo_no.next = p.next
-    novo_no.prev = p
-    if p.next is not None:
-        p.next.prev = novo_no
-    p.next = novo_no
     
 def lista_imprime(h):
     p = h.lista.next

@@ -8,7 +8,7 @@ try:
 except IOError:
     print("Erro ao abrir arquivo!")
     exit(1)
-HealCare = lista_cria()
+HealCare = hospital_cria()
 ler_arquivo(HealCare, caminho)
 dados_hospital(HealCare)
 
@@ -26,7 +26,7 @@ while controle != 8:
     print("========================================\n")
     controle = int(input("Digite o numero da opcao desejada: "))
     if controle == 1:
-        HealCare = cadastra_paciente(HealCare, HealCare.num_pacientes)
+        HealCare = cadastra_paciente(HealCare)
         arquivo = add_arquivo(HealCare, caminho)
     elif controle == 2:
         nome = input("Insira o nome do paciente que deseja excluir: ")
