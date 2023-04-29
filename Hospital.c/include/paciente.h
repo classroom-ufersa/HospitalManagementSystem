@@ -14,4 +14,13 @@ Listapacientes *  lista_add(Listapacientes * l, Pacientes paciente);
 void paciente_add(Listapacientes *p, FILE* arquivo);
 
 // busca um paciente na lista
-Listapacientes *busca_paciente(Hospital *h, char nome[]);
+Listapacientes *busca_paciente(Listapacientes *l, char nome[]);
+
+// edita um paciente
+void edita_paciente(Listapacientes *p);
+
+//libera a lista
+void lista_libera(Listapacientes *l);
+
+// imprime os pacientes
+void lista_imprime(Listapacientes *l);

@@ -83,6 +83,6 @@ int main(void)
         }
     }
     free(pacientetemp);
-    lista_libera(HealCare);
+    lista_libera(HealCare->lista);
     return 0;
 }
