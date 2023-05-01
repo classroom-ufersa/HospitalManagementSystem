@@ -1,25 +1,13 @@
 from paciente import *
 
 class Hospital:
-    def __init__(self, codigo=77, leitos=25, localizacao="", nome="", lista=ListaPacientes(), numpacientes = 0):
+    def __init__(self, codigo=77, leitos=25, localizacao="Cidade: UmariGomes", nome="HealCare", lista=ListaPacientes(), numpacientes = 0):
         self.codigo = codigo
         self.leitos = leitos
         self.localizacao = localizacao
         self.nome = nome
         self.lista = lista
         self.num_pacientes = numpacientes
-
-def hospital_cria():
-    h = Hospital()
-    h.lista = ListaPacientes()
-    h.lista.next = None
-    h.lista.prev = None
-    h.leitos = 25
-    h.num_pacientes = 0  
-    h.codigo = 77
-    h.nome = "HealCare"
-    h.localizacao = "Cidade: UmariGomes"
-    return h
 
 def cadastra_paciente(hospital):
     if hospital.num_pacientes == 25:
@@ -31,6 +19,7 @@ def cadastra_paciente(hospital):
     hospital.num_pacientes += 1
     hospital.leitos -= 1
     print("Paciente cadastrado com sucesso.\n\n")
+    return hospital
 
 def arquivo_add(h, caminho):
     arquivo = open(caminho, "w")

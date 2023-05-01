@@ -8,7 +8,7 @@ try:
 except IOError:
     print("Erro ao abrir arquivo!")
     exit(1)
-HealCare = hospital_cria()
+HealCare = Hospital()
 ler_arquivo(HealCare, caminho)
 dados_hospital(HealCare)
 

@@ -1,0 +1,36 @@
+Nome: Caio Moises
+Enfermidade: Perna quebrada
+Receita: Injecao bezetacil
+Internado: Sim
+RG: 213.355.657
+
+Nome: Francisco Pedro
+Enfermidade: Dor de cabeca
+Receita: Dorfles
+Internado: Sim
+CPF: 456.765.765-54
+
+Nome: Jhoan Fernandes
+Enfermidade: Gripe
+Receita: Repouso um dia
+Internado: Sim
+CPF: 777.777.777-77
+
+Nome: Joao Lucas
+Enfermidade: Febre
+Receita: Ibuprofeno
+Internado: Sim
+RG: 231.323.543
+
+Nome: Luiz Felipe
+Enfermidade: Dengue
+Receita: Injecao
+Internado: Sim
+RG: 213.321.321
+
+Nome: Neymar Junior
+Enfermidade: Dedo quebrado
+Receita: gesso duplo
+Internado: Sim
+RG: 342.433.543
+
