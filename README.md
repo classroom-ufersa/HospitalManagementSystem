@@ -1,6 +1,6 @@
 # Sistema Hospitalar `HealCare`
 
-## Tópicos
+### Tópicos
 
 - [Problemática](#problemática)
 - [Introdução](#introdução)
