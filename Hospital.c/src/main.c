@@ -7,7 +7,7 @@ int main(void)
     Listapacientes *pacientetemp = (Listapacientes *)malloc(sizeof(Listapacientes));
     FILE *arquivo;
     char caminho[] = "C:\\Users\\jhoan\\Desktop\\VScode\\GitHub\\HospitalManagementSystem\\Hospital.c\\data\\pacientes.txt"; // caminho do arquivo txt(Varia de pc para pc)
-    arquivo = fopen(caminho, "r");
+    arquivo = fopen(caminho, "r");//abrindo arquivo
     if (arquivo == NULL)
     {
         printf("Erro ao abrir arquivo!");
@@ -115,6 +115,7 @@ int main(void)
         }
     }
     free(pacientetemp);
+    free(HealCare);
     lista_libera(HealCare->lista);
     return 0;
 }
