@@ -144,3 +144,34 @@ def paciente_busca(lista, nome):
         p = p.next
     print(f"Paciente {nome} não encontrado na lista.")
     return None
+
+def paciente_edita(p):
+    print(f"\nNome: {p.nome}")
+    print(f"Enfermidade: {p.enfermidade}")
+    print(f"Receita: {p.receita}")
+    print(f"Internado: {'Sim' if p.internado else 'Nao'}")
+    print(f"Documento: {p.documento.rg}\n")
+    cont = int(input("Deseja mesmo editar o paciente acima? (1-sim)(2-nao)\n"))
+    if cont == 1:
+        opcao = int(input("\nO que voce deseja editar?\n1 - Nome\n2 - Enfermidade\n3 - Receita\n4 - Internado\n5 - Documento\nOpcao: "))
+        if opcao == 1:
+            p.nome = input("\nDigite o novo nome: ")
+        elif opcao == 2:
+            p.enfermidade = input("\nDigite a nova enfermidade: ")
+        elif opcao == 3:
+            p.receita = input("\nDigite a nova receita: ")
+        elif opcao == 4:
+            p.internado = int(input("\nO paciente esta internado? (1-sim / 0-nao): "))
+        elif opcao == 5:
+            opcao_documento = input("\nDigite '1' para editar o CPF ou '2' para editar o RG: ")
+            if opcao_documento == '1':
+                p.documento.cpf = input("Digite o novo CPF (XXX.YYY.ZZZ-SS): ")
+            elif opcao_documento == '2':
+                p.documento.rg = input("Digite o novo RG (XXX.YYY.ZZZ): ")
+            else:
+                print("Opcao invalida!")
+                return
+        else:
+            print("Opcao invalida!")
+            return
+        print("Paciente editado com sucesso!")

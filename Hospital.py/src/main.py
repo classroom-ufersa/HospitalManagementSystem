@@ -31,7 +31,7 @@ while controle != 8:
     elif controle == 2:
         nome = input("Insira o nome do paciente que deseja excluir: ")
         pacientetemp = paciente_busca(HealCare.lista, corrige_nome(nome))
-        excluir_paciente(pacientetemp, HealCare)
+        paciente_exclui(pacientetemp, HealCare)
         arquivo_add(HealCare.lista, caminho)
     elif controle == 3:
         lista_imprime(HealCare.lista)
@@ -52,7 +52,7 @@ while controle != 8:
         nome = input("Insira o nome do paciente que deseja editar: ")
         pacientetemp = paciente_busca(HealCare.lista, corrige_nome(nome))
         if pacientetemp is not None:
-            edita_paciente(pacientetemp.paciente)
+            paciente_edita(pacientetemp.paciente)
             arquivo_add(HealCare.lista, caminho)
         else:
             print("Paciente nao encontrado.")
@@ -67,4 +67,3 @@ while controle != 8:
         print("Obrigado por utilizar meu programa!\n")
     else:
         print("opcao invalida!\n")
-        
