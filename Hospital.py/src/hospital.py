@@ -31,23 +31,8 @@ def cadastra_paciente(hospital):
     hospital.num_pacientes += 1
     hospital.leitos -= 1
     print("Paciente cadastrado com sucesso.\n\n")
-    
-def lista_imprime(h):
-    p = h.lista.next
-    while p != None:
-        print("Nome:", p.paciente.nome)
-        print("Enfermidade:", p.paciente.enfermidade)
-        print("Receita:", p.paciente.receita)
-        print("Internado:", "Sim" if p.paciente.internado else "Nao")
-        if p.paciente.documento.cpf or p.paciente.documento.rg:
-            if p.paciente.documento.cpf:
-                print("CPF:", p.paciente.documento.cpf)
-            else:
-                print("RG:", p.paciente.documento.rg)
-        print()
-        p = p.next
 
-def add_arquivo(h, caminho):
+def arquivo_add(h, caminho):
     arquivo = open(caminho, "w")
     if arquivo == None:
         print("Erro ao abrir o arquivo.\n")
@@ -69,6 +54,21 @@ def add_arquivo(h, caminho):
 
     arquivo.close()
     return arquivo
+
+def lista_imprime(h):
+    p = h.lista.next
+    while p != None:
+        print("Nome:", p.paciente.nome)
+        print("Enfermidade:", p.paciente.enfermidade)
+        print("Receita:", p.paciente.receita)
+        print("Internado:", "Sim" if p.paciente.internado else "Nao")
+        if p.paciente.documento.cpf or p.paciente.documento.rg:
+            if p.paciente.documento.cpf:
+                print("CPF:", p.paciente.documento.cpf)
+            else:
+                print("RG:", p.paciente.documento.rg)
+        print()
+        p = p.next
 
 def ler_arquivo(hospital, caminho):
     try:

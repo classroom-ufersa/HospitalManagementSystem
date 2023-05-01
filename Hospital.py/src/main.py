@@ -27,16 +27,16 @@ while controle != 8:
     controle = int(input("Digite o numero da opcao desejada: "))
     if controle == 1:
         HealCare = cadastra_paciente(HealCare)
-        arquivo = add_arquivo(HealCare, caminho)
+        arquivo = arquivo_add(HealCare, caminho)
     elif controle == 2:
         nome = input("Insira o nome do paciente que deseja excluir: ")
         pacientetemp = busca_paciente(HealCare, nome)
         excluir_paciente(pacientetemp, HealCare)
-        add_arquivo(HealCare, caminho)
+        arquivo_add(HealCare, caminho)
     elif controle == 3:
         lista_imprime(HealCare)
     elif controle == 4:
-        nome = input("Insira o nome do paciente que deseja buscar: ")
+        nome = input("Insira o nome do paciente que deseja busc1ar: ")
         pacientetemp = busca_paciente(HealCare, nome)
         print("\nNome: {}".format(pacientetemp.paciente.nome))
         print("Enfermidade: {}".format(pacientetemp.paciente.enfermidade))
@@ -48,7 +48,7 @@ while controle != 8:
         pacientetemp = busca_paciente(HealCare, nome)
         if pacientetemp is not None:
             edita_paciente(pacientetemp.paciente)
-            add_arquivo(HealCare, caminho)
+            arquivo_add(HealCare, caminho)
         else:
             print("Paciente nao encontrado.")
     elif controle == 6:

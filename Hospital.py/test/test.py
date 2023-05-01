@@ -19,8 +19,6 @@ class ListaPacientes:
         self.next = None
         self.prev = None
 
-
-    
 def corrige_nome(nome):
     # Verificar se o nome contém apenas letras e espaços
     nome_corrigido = ""
@@ -82,9 +80,9 @@ def paciente_preenche():
                 print("RG inválido. Digite no formato XXX.YYY.ZZZ.")
         return paciente
         
-def lista_add(self, paciente):
+def lista_add(hospital, paciente):
     # Encontrar a posição correta para inserir o novo paciente
-    p = self.lista
+    p = hospital.lista
     while p.next is not None and p.next.paciente.nome < paciente.nome:
         p = p.next
 
@@ -97,6 +95,27 @@ def lista_add(self, paciente):
     novo_no.prev = p
     if p.next is not None:
         p.next.prev = novo_no
-    p.next = novo_no
-    
-            
+    p.next = novo_no        
+
+def arquivo_add(lista, caminho):
+    arquivo = open(caminho, "w")
+    if arquivo == None:
+        print("Erro ao abrir o arquivo.\n")
+        exit(1)
+    p = ListaPacientes()
+    p = lista
+    while p.next != None:
+        paciente = p.next.paciente
+        arquivo.write(f"Nome: {paciente.nome}\n")
+        arquivo.write(f"Enfermidade: {paciente.enfermidade}\n")
+        arquivo.write(f"Receita: {paciente.receita}\n")
+        arquivo.write(f"Internado: {'Sim' if paciente.internado else 'Nao'}\n")
+        if len(paciente.documento.cpf) == 14:
+            arquivo.write(f"CPF: {paciente.documento.cpf}\n")
+        else:
+            arquivo.write(f"RG: {paciente.documento.rg}\n")
+        arquivo.write("\n")
+        p = p.next
+
+    arquivo.close()
+    return arquivo
