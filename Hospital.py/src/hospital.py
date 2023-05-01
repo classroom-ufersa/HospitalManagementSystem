@@ -21,44 +21,6 @@ def cadastra_paciente(hospital):
     print("Paciente cadastrado com sucesso.\n\n")
     return hospital
 
-def arquivo_add(h, caminho):
-    arquivo = open(caminho, "w")
-    if arquivo == None:
-        print("Erro ao abrir o arquivo.\n")
-        exit(1)
-
-    p = h.lista
-    while p.next != None:
-        paciente = p.next.paciente
-        arquivo.write(f"Nome: {paciente.nome}\n")
-        arquivo.write(f"Enfermidade: {paciente.enfermidade}\n")
-        arquivo.write(f"Receita: {paciente.receita}\n")
-        arquivo.write(f"Internado: {'Sim' if paciente.internado else 'Nao'}\n")
-        if len(paciente.documento.cpf) == 14:
-            arquivo.write(f"CPF: {paciente.documento.cpf}\n")
-        else:
-            arquivo.write(f"RG: {paciente.documento.rg}\n")
-        arquivo.write("\n")
-        p = p.next
-
-    arquivo.close()
-    return arquivo
-
-def lista_imprime(h):
-    p = h.lista.next
-    while p != None:
-        print("Nome:", p.paciente.nome)
-        print("Enfermidade:", p.paciente.enfermidade)
-        print("Receita:", p.paciente.receita)
-        print("Internado:", "Sim" if p.paciente.internado else "Nao")
-        if p.paciente.documento.cpf or p.paciente.documento.rg:
-            if p.paciente.documento.cpf:
-                print("CPF:", p.paciente.documento.cpf)
-            else:
-                print("RG:", p.paciente.documento.rg)
-        print()
-        p = p.next
-
 def ler_arquivo(hospital, caminho):
     try:
         with open(caminho, "r") as arquivo:
@@ -101,16 +63,6 @@ def ler_arquivo(hospital, caminho):
     except FileNotFoundError:
         print("Arquivo nao encontrado.\n")
         return
-
-
-def busca_paciente(h, nome):
-    p = h.lista
-    while p != None:
-        if p.paciente.nome == nome:
-            return p
-        p = p.next
-    print(f"Paciente {nome} não encontrado na lista.")
-    return None
 
 
 def edita_paciente(p):

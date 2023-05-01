@@ -20,7 +20,6 @@ class ListaPacientes:
         self.prev = None
 
 
-    
 def corrige_nome(nome):
     # Verificar se o nome contém apenas letras e espaços
     nome_corrigido = ""
@@ -99,4 +98,49 @@ def lista_add(self, paciente):
         p.next.prev = novo_no
     p.next = novo_no
     
-            
+def lista_imprime(lista):
+    p = lista.next
+    while p != None:
+        print("Nome:", p.paciente.nome)
+        print("Enfermidade:", p.paciente.enfermidade)
+        print("Receita:", p.paciente.receita)
+        print("Internado:", "Sim" if p.paciente.internado else "Nao")
+        if p.paciente.documento.cpf or p.paciente.documento.rg:
+            if p.paciente.documento.cpf:
+                print("CPF:", p.paciente.documento.cpf)
+            else:
+                print("RG:", p.paciente.documento.rg)
+        print()
+        p = p.next
+
+def arquivo_add(lista, caminho):
+    arquivo = open(caminho, "w")
+    if arquivo == None:
+        print("Erro ao abrir o arquivo.\n")
+        exit(1)
+
+    p = lista
+    while p.next != None:
+        paciente = p.next.paciente
+        arquivo.write(f"Nome: {paciente.nome}\n")
+        arquivo.write(f"Enfermidade: {paciente.enfermidade}\n")
+        arquivo.write(f"Receita: {paciente.receita}\n")
+        arquivo.write(f"Internado: {'Sim' if paciente.internado else 'Nao'}\n")
+        if len(paciente.documento.cpf) == 14:
+            arquivo.write(f"CPF: {paciente.documento.cpf}\n")
+        else:
+            arquivo.write(f"RG: {paciente.documento.rg}\n")
+        arquivo.write("\n")
+        p = p.next
+
+    arquivo.close()
+    return arquivo
+
+def paciente_busca(lista, nome):
+    p = lista
+    while p != None:
+        if p.paciente.nome == nome:
+            return p
+        p = p.next
+    print(f"Paciente {nome} não encontrado na lista.")
+    return None

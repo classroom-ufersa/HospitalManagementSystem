@@ -27,28 +27,33 @@ while controle != 8:
     controle = int(input("Digite o numero da opcao desejada: "))
     if controle == 1:
         HealCare = cadastra_paciente(HealCare)
-        arquivo = arquivo_add(HealCare, caminho)
+        arquivo = arquivo_add(HealCare.lista, caminho)
     elif controle == 2:
         nome = input("Insira o nome do paciente que deseja excluir: ")
-        pacientetemp = busca_paciente(HealCare, nome)
+        pacientetemp = paciente_busca(HealCare.lista, corrige_nome(nome))
         excluir_paciente(pacientetemp, HealCare)
-        arquivo_add(HealCare, caminho)
+        arquivo_add(HealCare.lista, caminho)
     elif controle == 3:
-        lista_imprime(HealCare)
+        lista_imprime(HealCare.lista)
     elif controle == 4:
-        nome = input("Insira o nome do paciente que deseja busc1ar: ")
-        pacientetemp = busca_paciente(HealCare, nome)
-        print("\nNome: {}".format(pacientetemp.paciente.nome))
-        print("Enfermidade: {}".format(pacientetemp.paciente.enfermidade))
-        print("Receita: {}".format(pacientetemp.paciente.receita))
-        print("Internado: {}".format("Sim" if pacientetemp.paciente.internado else "Nao"))
-        print("Documento: {}".format(pacientetemp.paciente.documento.rg))
+        nome = input("Insira o nome do paciente que deseja buscar: ")
+        pacientetemp = paciente_busca(HealCare.lista, corrige_nome(nome))
+        print("\nNome:", pacientetemp.paciente.nome)
+        print("Enfermidade:", pacientetemp.paciente.enfermidade)
+        print("Receita:", pacientetemp.paciente.receita)
+        print("Internado:", "Sim" if pacientetemp.paciente.internado else "Nao")
+        if pacientetemp.paciente.documento.cpf or pacientetemp.paciente.documento.rg:
+            if pacientetemp.paciente.documento.cpf:
+                print("CPF:", pacientetemp.paciente.documento.cpf)
+            else:
+                print("RG:", pacientetemp.paciente.documento.rg)
+        print()
     elif controle == 5:
         nome = input("Insira o nome do paciente que deseja editar: ")
-        pacientetemp = busca_paciente(HealCare, nome)
+        pacientetemp = paciente_busca(HealCare.lista, corrige_nome(nome))
         if pacientetemp is not None:
             edita_paciente(pacientetemp.paciente)
-            arquivo_add(HealCare, caminho)
+            arquivo_add(HealCare.lista, caminho)
         else:
             print("Paciente nao encontrado.")
     elif controle == 6:
