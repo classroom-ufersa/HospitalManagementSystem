@@ -14,7 +14,7 @@ Criar um sistema é responsável por gerir pacientes de um hospital dando ao usu
 
 ### Introdução
 
-O sistema foi desenvolvido na `linguigem C` e `Python`, utilizando vários funções presentes nas linguagems. O intuito desse projeto é criar um sistema que consiga gerenciar leitos de hospital.
+O sistema foi desenvolvido na linguagem `C` e `Python`, utilizando vários funções presentes nas linguagems. O intuito desse projeto é criar um sistema que consiga gerenciar leitos de hospital.
 
 O nome do hospital `HealCare` foi gerado automaticamente por uma IA, a cidade na qual o hospital está localizado é a junção dos nomes das cidades dos contribuientes do projeto, sendo ela Umarigomes. Lembrando que este sistema é de um hospital ficticio sendo utilizado para uso acâdemico.
 
