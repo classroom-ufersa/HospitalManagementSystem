@@ -150,6 +150,11 @@ def paciente_edita(p):
     print(f"Enfermidade: {p.enfermidade}")
     print(f"Receita: {p.receita}")
     print(f"Internado: {'Sim' if p.internado else 'Nao'}")
+    if p.documento.cpf or p.documento.rg:
+        if p.documento.cpf:
+            print("CPF:", p.documento.cpf)
+        else:
+            print("RG:", p.documento.rg)
     while True:
                 try:
                     cont = int(input("Deseja mesmo editar o paciente acima? (1-sim)(2-nao)\n"))
