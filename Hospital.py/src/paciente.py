@@ -150,28 +150,58 @@ def paciente_edita(p):
     print(f"Enfermidade: {p.enfermidade}")
     print(f"Receita: {p.receita}")
     print(f"Internado: {'Sim' if p.internado else 'Nao'}")
-    print(f"Documento: {p.documento.rg}\n")
-    cont = int(input("Deseja mesmo editar o paciente acima? (1-sim)(2-nao)\n"))
+    if p.documento.cpf or p.documento.rg:
+        if p.documento.cpf:
+            print("CPF:", p.documento.cpf)
+        else:
+            print("RG:", p.documento.rg)
+    while True:
+                try:
+                    cont = int(input("Deseja mesmo editar o paciente acima? (1-sim)(2-nao)\n"))
+                    if cont not in [1, 2]:
+                        raise ValueError
+                    break
+                except ValueError:
+                    print("Opção inválida. Digite 1 para sim e 2 para não.")
+    print()
     if cont == 1:
         opcao = int(input("\nO que voce deseja editar?\n1 - Nome\n2 - Enfermidade\n3 - Receita\n4 - Internado\n5 - Documento\nOpcao: "))
         if opcao == 1:
-            p.nome = input("\nDigite o novo nome: ")
+            nome = input("\nDigite o novo nome: ")
+            p.nome = corrige_nome(nome)
         elif opcao == 2:
             p.enfermidade = input("\nDigite a nova enfermidade: ")
         elif opcao == 3:
             p.receita = input("\nDigite a nova receita: ")
         elif opcao == 4:
             p.internado = int(input("\nO paciente esta internado? (1-sim / 0-nao): "))
+            while True:
+                try:
+                    p.internado = int(input("Internado? (1-sim) (0-nao): "))
+                    if p.internado not in [0, 1]:
+                        raise ValueError
+                    break
+                except ValueError:
+                    print("Opção inválida. Digite 1 para sim e 0 para não.")
         elif opcao == 5:
-            opcao_documento = input("\nDigite '1' para editar o CPF ou '2' para editar o RG: ")
-            if opcao_documento == '1':
-                p.documento.cpf = input("Digite o novo CPF (XXX.YYY.ZZZ-SS): ")
-            elif opcao_documento == '2':
-                p.documento.rg = input("Digite o novo RG (XXX.YYY.ZZZ): ")
-            else:
-                print("Opcao invalida!")
-                return
+            if p.documento.cpf or p.documento.rg:
+                if p.documento.cpf:
+                    while True:
+                        cpf = input("Digite o novo CPF do paciente (XXX.YYY.ZZZ-SS): ")
+                        if re.match(r'^\d{3}\.\d{3}\.\d{3}-\d{2}$', cpf):
+                            p.documento.cpf = cpf
+                            break
+                        else:
+                            print("CPF inválido. Digite no formato XXX.YYY.ZZZ-SS.")
+                else:
+                    while True:
+                        rg = input("Digite o RG do pacientee (XXX.YYY.ZZZ): ")
+                        if re.match(r'^\d{3}\.\d{3}\.\d{3}$', rg):
+                            p.documento.rg = rg
+                            break
+                        else:
+                            print("RG inválido. Digite no formato XXX.YYY.ZZZ.")     
         else:
             print("Opcao invalida!")
             return
-        print("Paciente editado com sucesso!")
+    print("Paciente editado com sucesso!")

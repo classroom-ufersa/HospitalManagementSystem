@@ -4,12 +4,6 @@ Receita: Injecao bezetacil
 Internado: Sim
 RG: 213.355.657
 
-Nome: Francisco Pedro
-Enfermidade: Dor de cabeca
-Receita: Dorfles
-Internado: Sim
-CPF: 456.765.765-54
-
 Nome: Jhoan Fernandes
 Enfermidade: Gripe
 Receita: Repouso um dia
@@ -20,7 +14,7 @@ Nome: Joao Lucas
 Enfermidade: Febre
 Receita: Ibuprofeno
 Internado: Sim
-RG: 231.323.543
+RG: 765.765.345
 
 Nome: Luiz Felipe
 Enfermidade: Dengue

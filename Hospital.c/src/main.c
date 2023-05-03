@@ -53,7 +53,6 @@ int main(void)
                 printf("O paciente nao esta cadastrado!\n\n");
             }
             break;
-
         case 3:
             lista_imprime(HealCare->lista);
             break;
