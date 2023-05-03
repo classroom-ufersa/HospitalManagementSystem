@@ -14,13 +14,19 @@ Nome: Jhoan Fernandes
 Enfermidade: Gripe
 Receita: Repouso um dia
 Internado: Sim
-CPF: 777.777.777-77
+RG: 454.646.675
 
 Nome: Joao Lucas
 Enfermidade: Febre
 Receita: Ibuprofeno
 Internado: Sim
 RG: 231.323.543
+
+Nome: Lucas Oliveira
+Enfermidade: Dengue
+Receita: Sabao
+Internado: Sim
+RG: 432.543.435
 
 Nome: Luiz Felipe
 Enfermidade: Dengue

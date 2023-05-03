@@ -86,42 +86,46 @@ Pacientes paciente_preenche(void)
 
     printf("Digite a receita para o paciente: ");
     scanf(" %[^\n]s", paciente.receita);
-
-    printf("Internado? (1-sim) (0-nao): ");
-    scanf("%d", &paciente.internado);
-    if (paciente.internado != 1 && paciente.internado != 0)
+    do
     {
-        printf("Erro: entrada invalida\n");
-        exit(1);
-    }
+        printf("Internado? (1-sim) (0-nao): ");
+        scanf("%d", &paciente.internado);
+        if (paciente.internado != 0 && paciente.internado != 1)
+        {
+            printf("Erro: entrada invalida\n");
+        }
+    } while (paciente.internado != 0 && paciente.internado != 1);
     // Pedir para o usuário escolher qual documento cadastrar
-    printf("Digite '1' para cadastrar o CPF ou '2' para cadastrar o RG: ");
-    scanf(" %c", &opcao_documento);
-    if (opcao_documento != '1' && opcao_documento != '2')
+    do
     {
-        printf("Erro: entrada invalida\n");
-        exit(1);
-    }
+        printf("Digite '1' para cadastrar o CPF ou '2' para cadastrar o RG: ");
+        scanf(" %c", &opcao_documento);
+        if (opcao_documento != '1' && opcao_documento != '2')
+        {
+            printf("Erro: entrada invalida\n");
+        }
+
+    } while (opcao_documento != '1' && opcao_documento != '2');
     // lendo documento
     if (opcao_documento == '1')
     {
-        printf("Digite o CPF do paciente (XXX.YYY.ZZZ-SS): ");
-        scanf(" %[^\n]s", paciente.documento.cpf);
-        if (strlen(paciente.documento.cpf) != 14)
+        do
         {
-            printf("Erro: entrada invalida. Digite um CPF válido.\n");
-            exit(1);
-        }
+            printf("Digite o CPF do paciente (XXX.YYY.ZZZ-SS): ");
+            scanf(" %[^\n]s", paciente.documento.cpf);
+            if (strlen(paciente.documento.cpf) != 14)
+                printf("Erro: entrada invalida. Digite um CPF válido.\n");
+        } while (strlen(paciente.documento.cpf) != 14);
     }
     else if (opcao_documento == '2')
     {
-        printf("Digite o RG do paciente (XXX.YYY.ZZZ): ");
-        scanf(" %[^\n]s", paciente.documento.rg);
-        if (strlen(paciente.documento.rg) != 11)
+        do
         {
-            printf("Erro: entrada invalida. Digite um RG válido.\n");
-            exit(1);
-        }
+            printf("Digite o RG do paciente (XXX.YYY.ZZZ): ");
+            scanf(" %[^\n]s", paciente.documento.rg);
+            if (strlen(paciente.documento.rg) != 11)
+                printf("Erro: entrada invalida. Digite um RG válido.\n");
+        } while (strlen(paciente.documento.rg) != 11);
     }
     else
     {
@@ -198,14 +202,27 @@ Listapacientes *busca_paciente(Listapacientes *l, char nome[])
 
 void edita_paciente(Listapacientes *p)
 {
+    int opcao_documento;
     int cont;
     printf("\nNome: %s\n", p->pacientes->nome);
     printf("Enfermidade: %s\n", p->pacientes->enfermidade);
     printf("Receita: %s\n", p->pacientes->receita);
     printf("Internado: %s\n", p->pacientes->internado ? "Sim" : "Nao");
-    printf("Documento: %s\n\n", p->pacientes->documento.rg);
-    printf("Deseja mesmo editar o paciente acima? (1-sim)(2-nao)\n");
-    scanf("%d", &cont);
+    if (strlen(p->pacientes->documento.cpf) == 14)
+    {
+        printf("CPF: %s\n", p->pacientes->documento.cpf);
+    }
+    else
+    {
+        printf("RG: %s\n", p->pacientes->documento.rg);
+    }
+    do
+    {
+        printf("Deseja mesmo editar o paciente acima? (1-sim)(2-nao)\n");
+        scanf("%d", &cont);
+        if (cont != 1 && cont != 2)
+            printf("Erro: entrada invalida\n");
+    } while (cont != 1 && cont != 2);
     if (cont == 2)
     {
         printf("\n");
@@ -241,44 +258,45 @@ void edita_paciente(Listapacientes *p)
             printf("Paciente atualizado!\n");
             break;
         case 4:
-            printf("\nO paciente esta internado? (1-sim / 0-nao): ");
-            scanf("%d", &p->pacientes->internado);
-            if (p->pacientes->internado != 1 || p->pacientes->internado != 0)
+            do
             {
-                printf("Opcao invalida!\n");
-                exit(1);
-            }
+                printf("\nO paciente esta internado? (1-sim / 0-nao): ");
+                scanf("%d", &p->pacientes->internado);
+                if (p->pacientes->internado != 1 || p->pacientes->internado != 0)
+                    printf("Opcao invalida!\n");
+            } while (p->pacientes->internado != 1 || p->pacientes->internado != 0);
             printf("Paciente atualizado!\n");
             break;
         case 5:
-            printf("\nDigite '1' para editar o CPF ou '2' para editar o RG: ");
-            char opcao_documento;
-            scanf(" %c", &opcao_documento);
-            if (opcao_documento == '1')
+            do
             {
-                printf("Digite o CPF do paciente (XXX.YYY.ZZZ-SS): ");
-                scanf(" %[^\n]s", p->pacientes->documento.cpf);
-                if (strlen(p->pacientes->documento.cpf) != 14)
+                printf("\nDigite '1' para editar o CPF ou '2' para editar o RG: ");
+                scanf("%d", &opcao_documento);
+                if (opcao_documento != 1 && opcao_documento != 2)
+                    printf("Opcao invalida!\n");
+            } while (opcao_documento != 1 && opcao_documento != 2);
+            if (opcao_documento == 1)
+            {
+                do
                 {
-                    printf("Erro: entrada invalida. Digite um CPF válido.\n");
-                    exit(1);
-                }
+                    printf("Digite o CPF do paciente (XXX.YYY.ZZZ-SS): ");
+                    scanf(" %[^\n]s", p->pacientes->documento.cpf);
+                    if (strlen(p->pacientes->documento.cpf) != 14)
+                        printf("Erro: entrada invalida. Digite um CPF válido.\n");
+                } while (strlen(p->pacientes->documento.cpf) != 14);
                 printf("Paciente atualizado!\n");
             }
-            else if (opcao_documento == '2')
+            else if (opcao_documento == 2)
             {
-                printf("Digite o RG do paciente (XXX.YYY.ZZZ): ");
-                scanf(" %[^\n]s", p->pacientes->documento.rg);
-                if (strlen(p->pacientes->documento.rg) != 11)
+                do
                 {
-                    printf("Erro: entrada invalida. Digite um RG válido.\n");
-                    exit(1);
-                }
+                    printf("Digite o RG do paciente (XXX.YYY.ZZZ): ");
+                    scanf(" %[^\n]s", p->pacientes->documento.rg);
+                    if (strlen(p->pacientes->documento.rg) != 11)
+                        printf("Erro: entrada invalida. Digite um RG válido.\n");
+                } while (strlen(p->pacientes->documento.rg) != 11);
                 printf("Paciente atualizado!\n");
-            }
-            else
-            {
-                printf("Opcao invalida!\n");
+
             }
             break;
         default:
