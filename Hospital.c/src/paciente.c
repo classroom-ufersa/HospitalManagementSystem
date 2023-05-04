@@ -64,6 +64,10 @@ void corrige_nome(char nome[])
             nome[i] = toupper(nome[i]);
         }
     }
+    if (j == 1 && nome[0] == ' ')
+    {
+        nome[0] = '\0';
+    }
 }
 
 Listapacientes *lista_cria(void)
@@ -296,7 +300,6 @@ void edita_paciente(Listapacientes *p)
                         printf("Erro: entrada invalida. Digite um RG válido.\n");
                 } while (strlen(p->pacientes->documento.rg) != 11);
                 printf("Paciente atualizado!\n");
-
             }
             break;
         default:

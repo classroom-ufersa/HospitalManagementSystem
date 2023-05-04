@@ -17,6 +17,11 @@ struct hospital
 Hospital *hospital_cria(void)
 {
     Hospital *h = (Hospital *)malloc(sizeof(Hospital));
+    if (h == NULL)
+    {
+        printf("ERRO de alocacao de memoria!\n");
+        exit(1);
+    }
     h->lista = lista_cria();
     h->lista->next = NULL;
     h->lista->prev = NULL;
