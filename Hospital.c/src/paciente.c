@@ -64,9 +64,10 @@ void corrige_nome(char nome[])
             nome[i] = toupper(nome[i]);
         }
     }
-    if (j == 1 && nome[0] == ' ')
+    tamanho_do_nome = strlen(nome);
+    if (j == 1 && nome[tamanho_do_nome] == ' ')
     {
-        nome[0] = '\0';
+        nome[tamanho_do_nome] = '\0';
     }
 }
 

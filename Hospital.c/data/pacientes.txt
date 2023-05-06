@@ -4,18 +4,6 @@ Receita: Injecao bezetacil
 Internado: Sim
 RG: 213.355.657
 
-Nome: Cibelly 
-Enfermidade: 4
-Receita: AS
-Internado: Sim
-CPF: 123.435.345-57
-
-Nome: Cristiano Ronaldo
-Enfermidade: Melhor jogador da historia
-Receita: Copa
-Internado: Sim
-RG: 777.777.770
-
 Nome: Francisco Pedro
 Enfermidade: Dor de cabeca
 Receita: Dorfles
@@ -46,21 +34,8 @@ Receita: Injecao
 Internado: Sim
 RG: 213.321.321
 
-Nome: Marcos Paulo
-Enfermidade: Dengue
-Receita: Repouso
+Nome: Neymar Junior
+Enfermidade: Dedo quebrado
+Receita: gesso duplo
 Internado: Sim
-RG: 534.456.867
-
-Nome: Matheus Gomes
-Enfermidade: Asma
-Receita: Bombinha
-Internado: Sim
-RG: 123.435.533
-
-Nome: Tulio Oliveira
-Enfermidade: Dor de garganta
-Receita: Ibuprofeno 
-Internado: Sim
-CPF: 324.543.859-43
-
+RG: 342.433.543
