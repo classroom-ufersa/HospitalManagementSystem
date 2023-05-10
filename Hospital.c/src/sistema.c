@@ -4,17 +4,18 @@
 #include <stdlib.h> 
 #include <string.h> 
 #include <ctype.h>
-#include "sistema.h"  
+#include "C:\Users\jhoan\Desktop\VScode\GitHub\HospitalManagementSystem\Hospital.c\include\hospital.h"  
 
 #define N_OPCOES 8
+
 #define OPCAO1 '1'
 #define OPCAO2 '2'
 #define OPCAO3 '3'
 #define OPCAO4 '4'
-#define OPCAO1 '5'
-#define OPCAO2 '6'
-#define OPCAO3 '7'
-#define OPCAO4 '8'
+#define OPCAO5 '5'
+#define OPCAO6 '6'
+#define OPCAO7 '7'
+#define OPCAO8 '8'
 
 /****
  * Função: LimpaBuffer()
@@ -89,7 +90,7 @@ int LeInteiro(void)
  * Retorno: Nada
  ****/
 
-int main(void)
+/* int main(void)
 {
     unsigned char op;
     int inteiro1, inteiro2;
@@ -101,7 +102,7 @@ int main(void)
         switch (op)
         {
         case OPCAO1:
-            Beep(1000, 500); /* Emite um beep */
+            Beep(1000, 500); 
             inteiro1 = LeInteiro();
             inteiro2 = LeInteiro();
             printf("%d + %d = %d\n", inteiro1, inteiro2,
@@ -136,4 +137,4 @@ int main(void)
         }
     } while (!saida);
     return 0;
-}
+} */

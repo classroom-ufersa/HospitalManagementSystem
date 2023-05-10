@@ -1,3 +1,4 @@
+#include "paciente.h"
 // TAD: Hospital
 
 typedef struct hospital Hospital;

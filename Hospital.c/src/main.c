@@ -2,7 +2,8 @@
 
 int main(void)
 {
-    int controle = 0, quantidade = 0, volta = 0;
+    unsigned char controle;
+    int quantidade = 0, volta = 0;
     char nome[MaxNome];
     Listapacientes *pacientetemp = (Listapacientes *)malloc(sizeof(Listapacientes));
     FILE *arquivo;
@@ -29,14 +30,15 @@ int main(void)
         printf("[7] Consultar quantidade de pacientes\n");
         printf("[8] Sair\n");
         printf("========================================\n");
-        controle = leropcao();
+        controle = LeOpcao(OPCAO1,'8');
         system("cls");
+        Beep(1000, 500);
         switch (controle)
         {
-        case 1:
+        case OPCAO1:
             printf("Voce quer mesmo cadastrar um paciente? 1-(Sim) 2-(Nao)\n");
-            scanf("%d", &volta);
-            if (volta == 1)
+            volta = LeOpcao(OPCAO1,'2');
+            if (volta == OPCAO1)
             {
                 HealCare = cadastra_paciente(HealCare, &quantidade);
                 arquivo = add_arquivo(HealCare, caminho);
@@ -46,10 +48,10 @@ int main(void)
                 break;
             }
             break;
-        case 2:
+        case OPCAO2:
             printf("Voce quer mesmo excluir um paciente? 1-(Sim) 2-(Nao)\n");
-            scanf("%d", &volta);
-            if (volta == 1)
+            volta = LeOpcao(OPCAO1,'2');
+            if (volta == OPCAO1)
             {
                 printf("Insira o nome do paciente que deseja excluir: ");
                 scanf(" %[^\n]s", nome);
@@ -70,10 +72,10 @@ int main(void)
                 break;
             }
             break;
-        case 3:
+        case OPCAO3:
             printf("Voce quer mesmo listar os pacientes? 1-(Sim) 2-(Nao)\n");
-            scanf("%d", &volta);
-            if (volta == 1)
+            volta = LeOpcao(OPCAO1,'2');
+            if (volta == OPCAO1)
             {
                 lista_imprime(HealCare->lista);
             }
@@ -82,10 +84,10 @@ int main(void)
                 break;
             }
             break;
-        case 4:
+        case OPCAO4:
             printf("Voce quer mesmo buscar um paciente? 1-(Sim) 2-(Nao)\n");
-            scanf("%d", &volta);
-            if (volta == 1)
+            volta = LeOpcao(OPCAO1,'2');
+            if (volta == OPCAO1)
             {
                 printf("Insira o nome do paciente que deseja buscar: ");
                 scanf(" %[^\n]s", nome);
@@ -116,10 +118,10 @@ int main(void)
                 break;
             }
             break;
-        case 5:
+        case OPCAO5:
             printf("Voce quer mesmo editar um paciente? 1-(Sim) 2-(Nao)\n");
-            scanf("%d", &volta);
-            if (volta == 1)
+            volta = LeOpcao(OPCAO1,'2');
+            if (volta == OPCAO1)
             {
                 printf("Insira o nome do paciente que deseja editar: ");
                 scanf(" %[^\n]s", nome);
@@ -140,10 +142,10 @@ int main(void)
                 break;
             }
             break;
-        case 6:
+        case OPCAO6:
             printf("Voce quer mesmo ver o total de leitos disponiveis? 1-(Sim) 2-(Nao)\n");
-            scanf("%d", &volta);
-            if (volta == 1)
+            volta = LeOpcao(OPCAO1,'2');
+            if (volta == OPCAO1)
             {
                 if (HealCare->leitos > 0)
                     printf("Existem %d leitos disponiveis no momento de um total de %d.\n\n", HealCare->leitos, Leitos);
@@ -155,10 +157,10 @@ int main(void)
                 break;
             }
             break;
-        case 7:
+        case OPCAO7:
             printf("Voce quer mesmo ver o total de pacientes cadastrados? 1-(Sim) 2-(Nao)\n");
-            scanf("%d", &volta);
-            if (volta == 1)
+            volta = LeOpcao(OPCAO1,'2');
+            if (volta == OPCAO1)
             {
                 if (Leitos - HealCare->leitos > 0)
                 {
@@ -174,10 +176,10 @@ int main(void)
                 break;
             }
             break;
-        case 8:
+        case OPCAO8:
             printf("Voce quer mesmo sair do programa? 1-(Sim) 2-(Nao)\n");
-            scanf("%d", &volta);
-            if (volta == 1)
+            volta = LeOpcao(OPCAO1,'2');
+            if (volta == OPCAO1)
             {
                 printf("Obrigado por utilizar meu programa!\n");
             }
