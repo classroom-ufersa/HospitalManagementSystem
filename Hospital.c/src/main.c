@@ -1,29 +1,5 @@
 #include "hospital.c"
 
-void LimpaBuffer(void)
-{
-    int valorLido; /* valorLido deve ser int! */
-    do
-    {
-        valorLido = getchar();
-    } while ((valorLido != '\n') && (valorLido != EOF));
-}
-
-int leropcao(void)
-{
-    int umInt, nValoresLidos;
-    printf("Digite um valor do menu 1 a 8: ");
-    nValoresLidos = scanf("%d", &umInt);
-    while (nValoresLidos == 0 || umInt < 1 || umInt > 8)
-    { /*Nenhum inteiro foi lido*/
-        LimpaBuffer();
-        printf("Entrada incorreta. Digite um valor numerico entre 1 e 8: ");
-        nValoresLidos = scanf("%d", &umInt);
-    }
-    LimpaBuffer();
-    return umInt;
-}
-
 int main(void)
 {
     int controle = 0, quantidade = 0, volta = 0;
