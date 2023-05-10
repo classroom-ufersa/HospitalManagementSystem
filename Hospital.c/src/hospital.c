@@ -86,7 +86,7 @@ void ler_arquivo(Hospital *h, char *caminho, int *num_pacientes)
         fgets(linha, 100, arquivo);
         sscanf(linha, "Receita: %[^\n]", paciente.receita);
         fgets(linha, 100, arquivo);
-        sscanf(linha, "Internado: %d", &paciente.internado);
+        sscanf(linha, "Internado: %c", &paciente.internado);
         fgets(linha, 100, arquivo);
         if (strstr(linha, "CPF") != NULL)
         {

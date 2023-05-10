@@ -2,8 +2,8 @@
 
 int main(void)
 {
-    unsigned char controle;
-    int quantidade = 0, volta = 0;
+    char controle, volta;
+    int quantidade = 0;
     char nome[MaxNome];
     Listapacientes *pacientetemp = (Listapacientes *)malloc(sizeof(Listapacientes));
     FILE *arquivo;
@@ -77,6 +77,7 @@ int main(void)
             volta = LeOpcao(OPCAO1,'2');
             if (volta == OPCAO1)
             {
+                printf("\n");
                 lista_imprime(HealCare->lista);
             }
             else
@@ -162,9 +163,9 @@ int main(void)
             volta = LeOpcao(OPCAO1,'2');
             if (volta == OPCAO1)
             {
-                if (Leitos - HealCare->leitos > 0)
+                if (quantidade > 0)
                 {
-                    printf("Existem um total de %d pacientes cadastrados!\n\n", Leitos - HealCare->leitos);
+                    printf("Existem um total de %d pacientes cadastrados!\n\n", quantidade);
                 }
                 else
                 {

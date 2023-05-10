@@ -23,14 +23,13 @@
  * Parâmetros: Nenhum
  * Retorno: Nada
  ****/
-void LimpaBuffer(void)
-{
-    int valorLido; /* valorLido deve ser int! */
-    do
-    {
-        valorLido = getchar();
-    } while ((valorLido != '\n') && (valorLido != EOF));
+void LimpaBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF) {
+        // Descarta os caracteres do buffer até encontrar uma nova linha ou o fim do arquivo
+    }
 }
+
 /****
  * Função: LeOpcao()
  * Descrição: Lê e valida a opção digitada pelo usuário
@@ -44,7 +43,7 @@ int LeOpcao(int menorValor, int maiorValor)
     int op;
     while (1)
     {
-        printf("\nDigite sua opcao: ");
+        printf("Digite sua opcao: ");
         op = getchar();
         if (op >= menorValor && op <= maiorValor)
         {
@@ -81,60 +80,45 @@ int LeInteiro(void)
     LimpaBuffer();
     return umInt;
 }
-/****
- * Função: ApresentaMenu
- * Descrição: Apresenta menu com número indeterminado de opções
- * Parâmetros:
- *   nItens (entrada): número de itens no menu
- *   menorOpcao (entrada): caractere associado ao item I
- * Retorno: Nada
- ****/
 
-/* int main(void)
+void corrige_nome(char nome[])
 {
-    unsigned char op;
-    int inteiro1, inteiro2;
-    unsigned int saida = 0;
+    // Verificar se o nome contém apenas letras e espaços
+    int tamanho_do_nome = strlen(nome);
+    int i, j;
+    char ultimo_caractere = ' ';
 
-    do
+    // verificando se possui apenas letras e espaços
+    for (i = 0, j = 0; i < tamanho_do_nome; i++)
     {
-        op = LeOpcao(OPCAO1, OPCAO1 + N_OPCOES - 1);
-        switch (op)
+        if (isalpha(nome[i]) || nome[i] == ' ')
         {
-        case OPCAO1:
-            Beep(1000, 500); 
-            inteiro1 = LeInteiro();
-            inteiro2 = LeInteiro();
-            printf("%d + %d = %d\n", inteiro1, inteiro2,
-                   inteiro1 + inteiro2);
-            break;
-
-        case OPCAO2:
-            Beep(1000, 500);
-            inteiro1 = LeInteiro();
-            inteiro2 = LeInteiro();
-            printf("%d * %d = %d\n", inteiro1, inteiro2,
-                   inteiro1 * inteiro2);
-            break;
-
-        case OPCAO3:
-            Beep(1000, 500);
-            inteiro1 = LeInteiro();
-            inteiro2 = LeInteiro();
-            printf("%d / %d = %d\n", inteiro1, inteiro2,
-                   inteiro1 / inteiro2);
-            break;
-
-        case OPCAO4:
-            Beep(1000, 500);
-            saida = 1;
-            printf("Obrigado por usar este programa.");
-            break;
-
-        default:
-            printf("Este programa possui um bug.");
-            return 1;
+            // Remover dois espaços consecutivos
+            if (nome[i] == ' ' && ultimo_caractere == ' ')
+            {
+                continue;
+            }
+            nome[j] = nome[i];
+            j++;
+            ultimo_caractere = nome[i];
         }
-    } while (!saida);
-    return 0;
-} */
+    }
+    nome[j] = '\0';
+
+    nome[0] = toupper(nome[0]); // convertendo o primeiro caractere para maiúsculo
+    // Percorra os caracteres restantes e convertendo para minúsculo
+    for (i = 1; i < j; i++)
+    {
+        nome[i] = tolower(nome[i]);
+        // Verificando se o caractere anterior é um espaço em branco. Se sim, converte o caractere atual para maiúsculo
+        if (nome[i - 1] == ' ')
+        {
+            nome[i] = toupper(nome[i]);
+        }
+    }
+    tamanho_do_nome = strlen(nome);
+    if (j == 1 && nome[tamanho_do_nome] == ' ')
+    {
+        nome[tamanho_do_nome] = '\0';
+    }
+}

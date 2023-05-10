@@ -24,6 +24,3 @@ void lista_libera(Listapacientes *l);
 
 // imprime os pacientes
 void lista_imprime(Listapacientes *l);
-
-//corrige o nome
-void corrige_nome(char nome []);

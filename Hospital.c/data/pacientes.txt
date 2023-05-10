@@ -34,8 +34,3 @@ Receita: Injecao
 Internado: Sim
 RG: 213.321.321
 
-Nome: Neymar Junior
-Enfermidade: Dedo quebrado
-Receita: gesso duplo
-Internado: Sim
-RG: 342.433.543

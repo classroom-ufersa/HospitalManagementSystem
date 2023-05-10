@@ -15,7 +15,7 @@ struct pacientes
     char nome[MaxNome];
     Document documento;
     char enfermidade[50];
-    int internado; // sim == 1, nao == 0
+    char internado; // sim == 1, nao == 0
     char receita[100];
 };
 
@@ -25,48 +25,6 @@ struct listapacientes
     struct listapacientes *next;
     struct listapacientes *prev;
 };
-
-void corrige_nome(char nome[])
-{
-    // Verificar se o nome contém apenas letras e espaços
-    int tamanho_do_nome = strlen(nome);
-    int i, j;
-    char ultimo_caractere = ' ';
-
-    // verificando se possui apenas letras e espaços
-    for (i = 0, j = 0; i < tamanho_do_nome; i++)
-    {
-        if (isalpha(nome[i]) || nome[i] == ' ')
-        {
-            // Remover dois espaços consecutivos
-            if (nome[i] == ' ' && ultimo_caractere == ' ')
-            {
-                continue;
-            }
-            nome[j] = nome[i];
-            j++;
-            ultimo_caractere = nome[i];
-        }
-    }
-    nome[j] = '\0';
-
-    nome[0] = toupper(nome[0]); // convertendo o primeiro caractere para maiúsculo
-    // Percorra os caracteres restantes e convertendo para minúsculo
-    for (i = 1; i < j; i++)
-    {
-        nome[i] = tolower(nome[i]);
-        // Verificando se o caractere anterior é um espaço em branco. Se sim, converte o caractere atual para maiúsculo
-        if (nome[i - 1] == ' ')
-        {
-            nome[i] = toupper(nome[i]);
-        }
-    }
-    tamanho_do_nome = strlen(nome);
-    if (j == 1 && nome[tamanho_do_nome] == ' ')
-    {
-        nome[tamanho_do_nome] = '\0';
-    }
-}
 
 Listapacientes *lista_cria(void)
 {
@@ -78,38 +36,21 @@ Pacientes paciente_preenche(void)
 {
     Pacientes paciente;
     char opcao_documento;
-
     // Ler o nome do paciente
     printf("Digite o nome do paciente: ");
     scanf(" %[^\n]", paciente.nome);
     corrige_nome(paciente.nome);
     printf("Digite a enfermidade do paciente: ");
     scanf(" %[^\n]s", paciente.enfermidade);
-
     printf("Digite a receita para o paciente: ");
     scanf(" %[^\n]s", paciente.receita);
-    do
-    {
-        printf("Internado? (1-sim) (0-nao): ");
-        scanf("%d", &paciente.internado);
-        if (paciente.internado != 0 && paciente.internado != 1)
-        {
-            printf("Erro: entrada invalida\n");
-        }
-    } while (paciente.internado != 0 && paciente.internado != 1);
+    printf("Internado? (1-sim) (0-nao)\n");
+    paciente.internado = LeOpcao('0','1');
     // Pedir para o usuário escolher qual documento cadastrar
-    do
-    {
-        printf("Digite '1' para cadastrar o CPF ou '2' para cadastrar o RG: ");
-        scanf(" %c", &opcao_documento);
-        if (opcao_documento != '1' && opcao_documento != '2')
-        {
-            printf("Erro: entrada invalida\n");
-        }
-
-    } while (opcao_documento != '1' && opcao_documento != '2');
+    printf("Digite '1' para cadastrar o CPF ou '2' para cadastrar o RG\n");
+    opcao_documento = LeOpcao(OPCAO1, '2');
     // lendo documento
-    if (opcao_documento == '1')
+    if (opcao_documento == OPCAO1)
     {
         do
         {
@@ -119,7 +60,7 @@ Pacientes paciente_preenche(void)
                 printf("Erro: entrada invalida. Digite um CPF válido.\n");
         } while (strlen(paciente.documento.cpf) != 14);
     }
-    else if (opcao_documento == '2')
+    else if (opcao_documento == OPCAO2)
     {
         do
         {
@@ -131,7 +72,7 @@ Pacientes paciente_preenche(void)
     }
     else
     {
-        printf("Opcao invalida.\n");
+        printf("Ocorreu um BUG\n");
         exit(1);
     }
     return paciente;
@@ -263,7 +204,7 @@ void edita_paciente(Listapacientes *p)
             do
             {
                 printf("\nO paciente esta internado? (1-sim / 0-nao): ");
-                scanf("%d", &p->pacientes->internado);
+                scanf("%c", &p->pacientes->internado);
                 if (p->pacientes->internado != 1 || p->pacientes->internado != 0)
                     printf("Opcao invalida!\n");
             } while (p->pacientes->internado != 1 || p->pacientes->internado != 0);
