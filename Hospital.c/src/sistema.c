@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <windows.h>
-#include <stdlib.h> 
-#include <string.h> 
+#include <stdlib.h>
+#include <string.h>
 #include <ctype.h>
-#include "C:\Users\jhoan\Desktop\VScode\GitHub\HospitalManagementSystem\Hospital.c\include\hospital.h"  
+#include "C:\Users\jhoan\Desktop\VScode\GitHub\HospitalManagementSystem\Hospital.c\include\hospital.h"
 
 #define N_OPCOES 8
 
@@ -23,11 +23,13 @@
  * Parâmetros: Nenhum
  * Retorno: Nada
  ****/
-void LimpaBuffer() {
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF) {
-        // Descarta os caracteres do buffer até encontrar uma nova linha ou o fim do arquivo
-    }
+void LimpaBuffer(void)
+{
+    int valorLido; /* valorLido deve ser int! */
+    do
+    {
+        valorLido = getchar();
+    } while ((valorLido != '\n') && (valorLido != EOF));
 }
 
 /****
@@ -48,6 +50,7 @@ int LeOpcao(int menorValor, int maiorValor)
         if (op >= menorValor && op <= maiorValor)
         {
             LimpaBuffer();
+            Beep(1200, 300);
             break;
         }
         else
@@ -59,26 +62,6 @@ int LeOpcao(int menorValor, int maiorValor)
         }
     }
     return op;
-}
-/****
- * Função: LeInteiro()
- * Descrição: Lê um número inteiro introduzido pelo usuário
- * Parâmetros: Nenhum
- * Retorno: O inteiro lido
- ****/
-int LeInteiro(void)
-{
-    int umInt, nValoresLidos;
-    printf("Digite um valor inteiro: ");
-    nValoresLidos = scanf("%d", &umInt);
-    while (nValoresLidos == 0)
-    { /*Nenhum inteiro foi lido*/
-        LimpaBuffer();
-        printf("Entrada incorreta. Digite um valor inteiro: ");
-        nValoresLidos = scanf("%d", &umInt);
-    }
-    LimpaBuffer();
-    return umInt;
 }
 
 void corrige_nome(char nome[])

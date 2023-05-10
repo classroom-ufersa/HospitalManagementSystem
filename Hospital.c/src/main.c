@@ -17,7 +17,7 @@ int main(void)
     Hospital *HealCare = hospital_cria();
     ler_arquivo(HealCare, caminho, &quantidade);
     dados_hospital(HealCare);
-    while (controle != 8) // vai repetir ate o usuario digitar 8
+    while (controle != OPCAO8) // vai repetir ate o usuario digitar 8
     {
         printf("Menu:\n");
         printf("========================================\n");
@@ -32,7 +32,6 @@ int main(void)
         printf("========================================\n");
         controle = LeOpcao(OPCAO1,'8');
         system("cls");
-        Beep(1000, 500);
         switch (controle)
         {
         case OPCAO1:
@@ -55,6 +54,7 @@ int main(void)
             {
                 printf("Insira o nome do paciente que deseja excluir: ");
                 scanf(" %[^\n]s", nome);
+                LimpaBuffer();
                 corrige_nome(nome);
                 pacientetemp = busca_paciente(HealCare->lista, nome);
                 if (pacientetemp != NULL)
@@ -92,6 +92,7 @@ int main(void)
             {
                 printf("Insira o nome do paciente que deseja buscar: ");
                 scanf(" %[^\n]s", nome);
+                LimpaBuffer();
                 corrige_nome(nome);
                 pacientetemp = busca_paciente(HealCare->lista, nome);
                 if (pacientetemp != NULL)
@@ -126,6 +127,7 @@ int main(void)
             {
                 printf("Insira o nome do paciente que deseja editar: ");
                 scanf(" %[^\n]s", nome);
+                LimpaBuffer();
                 corrige_nome(nome);
                 pacientetemp = busca_paciente(HealCare->lista, nome);
                 if (pacientetemp != NULL)

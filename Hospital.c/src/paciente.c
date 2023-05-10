@@ -39,36 +39,24 @@ Pacientes paciente_preenche(void)
     // Ler o nome do paciente
     printf("Digite o nome do paciente: ");
     scanf(" %[^\n]", paciente.nome);
+    LimpaBuffer();
     corrige_nome(paciente.nome);
     printf("Digite a enfermidade do paciente: ");
     scanf(" %[^\n]s", paciente.enfermidade);
+    LimpaBuffer();
     printf("Digite a receita para o paciente: ");
     scanf(" %[^\n]s", paciente.receita);
+    LimpaBuffer();
     printf("Internado? (1-sim) (0-nao)\n");
-    paciente.internado = LeOpcao('0','1');
+    paciente.internado = LeOpcao('0', '1');
     // Pedir para o usuário escolher qual documento cadastrar
     printf("Digite '1' para cadastrar o CPF ou '2' para cadastrar o RG\n");
     opcao_documento = LeOpcao(OPCAO1, '2');
     // lendo documento
-    if (opcao_documento == OPCAO1)
-    {
-        do
-        {
-            printf("Digite o CPF do paciente (XXX.YYY.ZZZ-SS): ");
-            scanf(" %[^\n]s", paciente.documento.cpf);
-            if (strlen(paciente.documento.cpf) != 14)
-                printf("Erro: entrada invalida. Digite um CPF válido.\n");
-        } while (strlen(paciente.documento.cpf) != 14);
-    }
-    else if (opcao_documento == OPCAO2)
-    {
-        do
-        {
-            printf("Digite o RG do paciente (XXX.YYY.ZZZ): ");
-            scanf(" %[^\n]s", paciente.documento.rg);
-            if (strlen(paciente.documento.rg) != 11)
-                printf("Erro: entrada invalida. Digite um RG válido.\n");
-        } while (strlen(paciente.documento.rg) != 11);
+    if (opcao_documento == OPCAO1) {
+        lerCPF(paciente.documento.cpf);
+    } else if (opcao_documento == OPCAO2) {
+        lerRG(paciente.documento.rg);
     }
     else
     {
@@ -145,8 +133,8 @@ Listapacientes *busca_paciente(Listapacientes *l, char nome[])
 
 void edita_paciente(Listapacientes *p)
 {
-    int opcao_documento;
-    int cont;
+    char opcao_documento;
+    char cont;
     printf("\nNome: %s\n", p->pacientes->nome);
     printf("Enfermidade: %s\n", p->pacientes->enfermidade);
     printf("Receita: %s\n", p->pacientes->receita);
@@ -159,96 +147,85 @@ void edita_paciente(Listapacientes *p)
     {
         printf("RG: %s\n", p->pacientes->documento.rg);
     }
-    do
-    {
-        printf("Deseja mesmo editar o paciente acima? (1-sim)(2-nao)\n");
-        scanf("%d", &cont);
-        if (cont != 1 && cont != 2)
-            printf("Erro: entrada invalida\n");
-    } while (cont != 1 && cont != 2);
-    if (cont == 2)
+    printf("Deseja mesmo editar o paciente acima? (1-sim)(2-nao)\n");
+    cont = LeOpcao('1', '2');
+    if (cont == '2')
     {
         printf("\n");
     }
-    else if (cont == 1)
+    else if (cont == '1')
     {
 
-        int opcao;
+        char opcao;
         printf("\nO que voce deseja editar?\n");
         printf("1 - Nome\n");
         printf("2 - Enfermidade\n");
         printf("3 - Receita\n");
         printf("4 - Internado\n");
         printf("5 - Documento\n");
-        printf("Opcao: ");
-        scanf("%d", &opcao);
+        opcao = LeOpcao('1', '5');
         switch (opcao)
         {
-        case 1:
+        case OPCAO1:
             printf("\nDigite o novo nome: ");
             scanf(" %[^\n]s", p->pacientes->nome);
+            LimpaBuffer();
             corrige_nome(p->pacientes->nome);
             printf("Paciente atualizado!\n");
             break;
-        case 2:
+        case OPCAO2:
             printf("\nDigite a nova enfermidade: ");
             scanf(" %[^\n]s", p->pacientes->enfermidade);
+            LimpaBuffer();
             printf("Paciente atualizado!\n");
             break;
-        case 3:
+        case OPCAO3:
             printf("\nDigite a nova receita: ");
             scanf(" %[^\n]s", p->pacientes->receita);
+            LimpaBuffer();
             printf("Paciente atualizado!\n");
             break;
-        case 4:
-            do
-            {
-                printf("\nO paciente esta internado? (1-sim / 0-nao): ");
-                scanf("%c", &p->pacientes->internado);
-                if (p->pacientes->internado != 1 || p->pacientes->internado != 0)
-                    printf("Opcao invalida!\n");
-            } while (p->pacientes->internado != 1 || p->pacientes->internado != 0);
+        case OPCAO4:
+            printf("Internado? (1-sim) (0-nao)\n");
+            p->pacientes->internado = LeOpcao('0', '1');
             printf("Paciente atualizado!\n");
             break;
-        case 5:
-            do
-            {
-                printf("\nDigite '1' para editar o CPF ou '2' para editar o RG: ");
-                scanf("%d", &opcao_documento);
-                if (opcao_documento != 1 && opcao_documento != 2)
-                    printf("Opcao invalida!\n");
-            } while (opcao_documento != 1 && opcao_documento != 2);
-            if (opcao_documento == 1)
+        case OPCAO5:
+            printf("Digite '1' para editar o CPF ou '2' para editar o RG\n");
+            opcao_documento = LeOpcao(OPCAO1, '2');
+            if (opcao_documento == OPCAO1)
             {
                 do
                 {
                     printf("Digite o CPF do paciente (XXX.YYY.ZZZ-SS): ");
                     scanf(" %[^\n]s", p->pacientes->documento.cpf);
+                    LimpaBuffer();
                     if (strlen(p->pacientes->documento.cpf) != 14)
                         printf("Erro: entrada invalida. Digite um CPF válido.\n");
                 } while (strlen(p->pacientes->documento.cpf) != 14);
-                printf("Paciente atualizado!\n");
             }
-            else if (opcao_documento == 2)
+            else if (opcao_documento == OPCAO2)
             {
                 do
                 {
                     printf("Digite o RG do paciente (XXX.YYY.ZZZ): ");
                     scanf(" %[^\n]s", p->pacientes->documento.rg);
+                    LimpaBuffer();
                     if (strlen(p->pacientes->documento.rg) != 11)
                         printf("Erro: entrada invalida. Digite um RG válido.\n");
                 } while (strlen(p->pacientes->documento.rg) != 11);
-                printf("Paciente atualizado!\n");
             }
             break;
         default:
-            printf("Opcao invalida!\n");
+            printf("erro!\n");
+            exit(1);
             break;
         }
     }
     else
     {
-        printf("opcao invalida!");
+        printf("erro!\n");
+        exit(1);
     }
     printf("\n");
 }
