@@ -66,7 +66,6 @@ int main(void)
                 {
                     printf("O paciente nao esta cadastrado!\n\n");
                 }
-                free(pacientetemp);
             }
             else
             {
@@ -115,7 +114,6 @@ int main(void)
                 {
                     printf("O paciente nao esta cadastrado!\n\n");
                 }
-                free(pacientetemp);
             }
             else
             {
@@ -141,7 +139,6 @@ int main(void)
                 {
                     printf("O paciente nao esta cadastrado!\n\n");
                 }
-                free(pacientetemp);
             }
             else
             {
@@ -200,6 +197,7 @@ int main(void)
             break;
         }
     }
+    free(pacientetemp);
     lista_libera(HealCare->lista);
     free(HealCare);
     return 0;
