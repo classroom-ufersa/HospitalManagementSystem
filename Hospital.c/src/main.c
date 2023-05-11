@@ -2,12 +2,13 @@
 
 int main(void)
 {
-    int controle = 0, quantidade = 0;
+    char controle, volta;
+    int quantidade = 0;
     char nome[MaxNome];
     Listapacientes *pacientetemp = (Listapacientes *)malloc(sizeof(Listapacientes));
     FILE *arquivo;
     char caminho[] = "C:\\Users\\jhoan\\Desktop\\VScode\\GitHub\\HospitalManagementSystem\\Hospital.c\\data\\pacientes.txt"; // caminho do arquivo txt(Varia de pc para pc)
-    arquivo = fopen(caminho, "r");//abrindo arquivo
+    arquivo = fopen(caminho, "r");                                                                                           // abrindo arquivo
     if (arquivo == NULL)
     {
         printf("Erro ao abrir arquivo!");
@@ -16,7 +17,7 @@ int main(void)
     Hospital *HealCare = hospital_cria();
     ler_arquivo(HealCare, caminho, &quantidade);
     dados_hospital(HealCare);
-    while (controle != 8) // vai repetir ate o usuario digitar 8
+    while (controle != OPCAO8) // vai repetir ate o usuario digitar 8
     {
         printf("Menu:\n");
         printf("========================================\n");
@@ -29,92 +30,177 @@ int main(void)
         printf("[7] Consultar quantidade de pacientes\n");
         printf("[8] Sair\n");
         printf("========================================\n");
-        printf("Digite o numero da opcao desejada: ");
-        scanf("%d", &controle);
+        controle = LeOpcao(OPCAO1, '8');
         system("cls");
         switch (controle)
         {
-        case 1:
-            HealCare = cadastra_paciente(HealCare, &quantidade);
-            arquivo = add_arquivo(HealCare, caminho);
-            break;
-        case 2:
-            printf("Insira o nome do paciente que deseja excluir: ");
-            scanf(" %[^\n]s", nome);
-            corrige_nome(nome);
-            pacientetemp = busca_paciente(HealCare->lista, nome);
-            if (pacientetemp != NULL)
+        case OPCAO1:
+            printf("Voce quer mesmo cadastrar um paciente? 1-(Sim) 2-(Nao)\n");
+            volta = LeOpcao(OPCAO1, '2');
+            if (volta == OPCAO1)
             {
-                excluir_paciente(pacientetemp, HealCare);
-                add_arquivo(HealCare, caminho);
+                HealCare = cadastra_paciente(HealCare, &quantidade);
+                arquivo = add_arquivo(HealCare, caminho);
             }
             else
             {
-                printf("O paciente nao esta cadastrado!\n\n");
+                break;
             }
             break;
-        case 3:
-            lista_imprime(HealCare->lista);
-            break;
-        case 4:
-            printf("Insira o nome do paciente que deseja buscar: ");
-            scanf(" %[^\n]s", nome);
-            corrige_nome(nome);
-            pacientetemp = busca_paciente(HealCare->lista, nome);
-            if (pacientetemp != NULL)
+        case OPCAO2:
+            printf("Voce quer mesmo excluir um paciente? 1-(Sim) 2-(Nao)\n");
+            volta = LeOpcao(OPCAO1, '2');
+            if (volta == OPCAO1)
             {
-                printf("\nNome: %s\n", pacientetemp->pacientes->nome);
-                printf("Enfermidade: %s\n", pacientetemp->pacientes->enfermidade);
-                printf("Receita: %s\n", pacientetemp->pacientes->receita);
-                printf("Internado: %s\n", pacientetemp->pacientes->internado ? "Sim" : "Nao");
-                if (strlen(pacientetemp->pacientes->documento.cpf) == 14)
+                printf("Insira o nome do paciente que deseja excluir: ");
+                scanf(" %[^\n]s", nome);
+                LimpaBuffer();
+                corrige_nome(nome);
+                pacientetemp = busca_paciente(HealCare->lista, nome);
+                if (pacientetemp != NULL)
                 {
-                    printf("CPF: %s\n\n", pacientetemp->pacientes->documento.cpf);
+                    excluir_paciente(pacientetemp, HealCare, &quantidade);
+                    add_arquivo(HealCare, caminho);
                 }
                 else
                 {
-                    printf("RG: %s\n\n", pacientetemp->pacientes->documento.rg);
+                    printf("O paciente nao esta cadastrado!\n\n");
+                }
+                free(pacientetemp);
+            }
+            else
+            {
+                break;
+            }
+            break;
+        case OPCAO3:
+            printf("Voce quer mesmo listar os pacientes? 1-(Sim) 2-(Nao)\n");
+            volta = LeOpcao(OPCAO1, '2');
+            if (volta == OPCAO1)
+            {
+                printf("\n");
+                lista_imprime(HealCare->lista);
+            }
+            else
+            {
+                break;
+            }
+            break;
+        case OPCAO4:
+            printf("Voce quer mesmo buscar um paciente? 1-(Sim) 2-(Nao)\n");
+            volta = LeOpcao(OPCAO1, '2');
+            if (volta == OPCAO1)
+            {
+                printf("Insira o nome do paciente que deseja buscar: ");
+                scanf(" %[^\n]s", nome);
+                LimpaBuffer();
+                corrige_nome(nome);
+                pacientetemp = busca_paciente(HealCare->lista, nome);
+                if (pacientetemp != NULL)
+                {
+                    printf("\nNome: %s\n", pacientetemp->pacientes->nome);
+                    printf("Enfermidade: %s\n", pacientetemp->pacientes->enfermidade);
+                    printf("Receita: %s\n", pacientetemp->pacientes->receita);
+                    printf("Internado: %s\n", pacientetemp->pacientes->internado ? "Sim" : "Nao");
+                    if (strlen(pacientetemp->pacientes->documento.cpf) == 14)
+                    {
+                        printf("CPF: %s\n\n", pacientetemp->pacientes->documento.cpf);
+                    }
+                    else
+                    {
+                        printf("RG: %s\n\n", pacientetemp->pacientes->documento.rg);
+                    }
+                }
+                else
+                {
+                    printf("O paciente nao esta cadastrado!\n\n");
+                }
+                free(pacientetemp);
+            }
+            else
+            {
+                break;
+            }
+            break;
+        case OPCAO5:
+            printf("Voce quer mesmo editar um paciente? 1-(Sim) 2-(Nao)\n");
+            volta = LeOpcao(OPCAO1, '2');
+            if (volta == OPCAO1)
+            {
+                printf("Insira o nome do paciente que deseja editar: ");
+                scanf(" %[^\n]s", nome);
+                LimpaBuffer();
+                corrige_nome(nome);
+                pacientetemp = busca_paciente(HealCare->lista, nome);
+                if (pacientetemp != NULL)
+                {
+                    edita_paciente(pacientetemp);
+                    add_arquivo(HealCare, caminho);
+                }
+                else
+                {
+                    printf("O paciente nao esta cadastrado!\n\n");
+                }
+                free(pacientetemp);
+            }
+            else
+            {
+                break;
+            }
+            break;
+        case OPCAO6:
+            printf("Voce quer mesmo ver o total de leitos disponiveis? 1-(Sim) 2-(Nao)\n");
+            volta = LeOpcao(OPCAO1, '2');
+            if (volta == OPCAO1)
+            {
+                if (HealCare->leitos > 0)
+                    printf("Existem %d leitos disponiveis no momento de um total de %d.\n\n", HealCare->leitos, Leitos);
+                else
+                    printf("Nao existem leitos disponiveis no momento todos os %d estao sendo utilizados!\n\n", Leitos);
+            }
+            else
+            {
+                break;
+            }
+            break;
+        case OPCAO7:
+            printf("Voce quer mesmo ver o total de pacientes cadastrados? 1-(Sim) 2-(Nao)\n");
+            volta = LeOpcao(OPCAO1, '2');
+            if (volta == OPCAO1)
+            {
+                if (quantidade > 0)
+                {
+                    printf("Existem um total de %d pacientes cadastrados!\n\n", quantidade);
+                }
+                else
+                {
+                    printf("Nao existem pacientes cadastrados!\n");
                 }
             }
             else
             {
-                printf("O paciente nao esta cadastrado!\n\n");
+                break;
             }
             break;
-        case 5:
-            printf("Insira o nome do paciente que deseja editar: ");
-            scanf(" %[^\n]s", nome);
-            corrige_nome(nome);
-            pacientetemp = busca_paciente(HealCare->lista, nome);
-            if (pacientetemp != NULL)
+        case OPCAO8:
+            printf("Voce quer mesmo sair do programa? 1-(Sim) 2-(Nao)\n");
+            volta = LeOpcao(OPCAO1, '2');
+            if (volta == OPCAO1)
             {
-                edita_paciente(pacientetemp);
-                add_arquivo(HealCare, caminho);
+                printf("Obrigado por utilizar meu programa!\n");
             }
             else
             {
-                printf("O paciente nao esta cadastrado!\n\n");
+                controle = 1;
+                break;
             }
-            break;
-        case 6:
-            if (HealCare->leitos > 0)
-                printf("Existem %d leitos disponiveis no momento de um total de %d.\n\n", HealCare->leitos, Leitos);
-            else
-                printf("Nao existem leitos disponiveis no momento todos os %d estao sendo utilizados!\n\n", Leitos);
-            break;
-        case 7:
-            printf("Existem um total de %d pacientes cadastrados!\n\n", Leitos - HealCare->leitos);
-            break;
-        case 8:
-            printf("Obrigado por utilizar meu programa!\n");
             break;
         default:
             printf("opcao invalida!\n");
             break;
         }
     }
-    free(pacientetemp);
-    free(HealCare);
     lista_libera(HealCare->lista);
+    free(HealCare);
     return 0;
 }

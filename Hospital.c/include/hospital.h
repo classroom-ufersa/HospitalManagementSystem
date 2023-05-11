@@ -1,3 +1,4 @@
+#include "paciente.h"
 // TAD: Hospital
 
 typedef struct hospital Hospital;
@@ -15,4 +16,4 @@ Hospital *hospital_cria(void);
 void ler_arquivo(Hospital *h, char *caminho, int *qnt);
 
 // exclui um paciente
-Hospital *excluir_paciente(Listapacientes *p, Hospital *h);
+Hospital *excluir_paciente(Listapacientes *p, Hospital *h, int *quantidade);

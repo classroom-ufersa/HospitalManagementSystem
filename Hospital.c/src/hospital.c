@@ -17,6 +17,11 @@ struct hospital
 Hospital *hospital_cria(void)
 {
     Hospital *h = (Hospital *)malloc(sizeof(Hospital));
+    if (h == NULL)
+    {
+        printf("ERRO de alocacao de memoria!\n");
+        exit(1);
+    }
     h->lista = lista_cria();
     h->lista->next = NULL;
     h->lista->prev = NULL;
@@ -34,7 +39,7 @@ Hospital *cadastra_paciente(Hospital *h, int *qnt)
         printf("Capacidade máxima atingida!\n");
         exit(1);
     }
-    // Adicionando o paciente na lista do hospital
+
     Pacientes p = paciente_preenche();
     h->lista = lista_add((h->lista), p);
     (*qnt)++;
@@ -81,7 +86,7 @@ void ler_arquivo(Hospital *h, char *caminho, int *num_pacientes)
         fgets(linha, 100, arquivo);
         sscanf(linha, "Receita: %[^\n]", paciente.receita);
         fgets(linha, 100, arquivo);
-        sscanf(linha, "Internado: %d", &paciente.internado);
+        sscanf(linha, "Internado: %c", &paciente.internado);
         fgets(linha, 100, arquivo);
         if (strstr(linha, "CPF") != NULL)
         {
@@ -103,29 +108,30 @@ void ler_arquivo(Hospital *h, char *caminho, int *num_pacientes)
     h->leitos -= i;
 }
 
-Hospital *excluir_paciente(Listapacientes *p, Hospital *h)
+Hospital *excluir_paciente(Listapacientes *p, Hospital *h, int *quantidade)
 {
     if (p == NULL)
     {
-        return h; // não achou
+        return h; 
     }
     else
     {
-        // retira o elemento
-        if (h->lista == p) // testa se é o primeiro elemento
+
+        if (h->lista == p) 
         {
             h->lista = p->next;
         }
         else
         {
-            p->prev->next = p->next; // retira o do meio
+            p->prev->next = p->next; 
         }
-        if (p->next != NULL) // testa se é o ultimo elemento
+        if (p->next != NULL)
         {
             p->next->prev = p->prev;
         }
         free(p);
         h->leitos++;
+        (*quantidade)--;
         printf("Paciente excluido com sucesso!\n\n");
     }
     return h;
