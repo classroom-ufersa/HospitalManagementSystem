@@ -41,22 +41,31 @@ Pacientes paciente_preenche(void)
     scanf(" %[^\n]", paciente.nome);
     LimpaBuffer();
     corrige_nome(paciente.nome);
+
     printf("Digite a enfermidade do paciente: ");
     scanf(" %[^\n]s", paciente.enfermidade);
     LimpaBuffer();
+
     printf("Digite a receita para o paciente: ");
     scanf(" %[^\n]s", paciente.receita);
     LimpaBuffer();
+
     printf("Internado? (1-sim) (0-nao)\n");
     paciente.internado = LeOpcao('0', '1');
-    // Pedir para o usuário escolher qual documento cadastrar
+
     printf("Digite '1' para cadastrar o CPF ou '2' para cadastrar o RG\n");
     opcao_documento = LeOpcao(OPCAO1, '2');
-    // lendo documento
-    if (opcao_documento == OPCAO1) {
-        lerCPF(paciente.documento.cpf);
-    } else if (opcao_documento == OPCAO2) {
-        lerRG(paciente.documento.rg);
+    if (opcao_documento == OPCAO1)
+    {
+        char cpf[15];
+        lerCPF(cpf);
+        strcpy(paciente.documento.cpf, cpf);
+    }
+    else if (opcao_documento == OPCAO2)
+    {
+        char rg[12];
+        lerCPF(rg);
+        strcpy(paciente.documento.rg, rg);
     }
     else
     {
@@ -86,13 +95,13 @@ void paciente_add(Listapacientes *p, FILE *arquivo)
 
 Listapacientes *lista_add(Listapacientes *l, Pacientes paciente)
 {
-    // Encontrar a posição correta para inserir o novo paciente
+
     Listapacientes *p = l;
     while (p->next != NULL && strcmp(p->next->pacientes->nome, paciente.nome) < 0)
     {
         p = p->next;
     }
-    // Criar um novo nó para o novo paciente
+
     Listapacientes *novo_no = (Listapacientes *)malloc(sizeof(Listapacientes));
     if (novo_no == NULL)
     {
@@ -107,7 +116,6 @@ Listapacientes *lista_add(Listapacientes *l, Pacientes paciente)
     }
     *novo_no->pacientes = paciente;
 
-    // Inserir o novo paciente na posição correta
     novo_no->next = p->next;
     novo_no->prev = p;
     if (p->next != NULL)
@@ -195,25 +203,15 @@ void edita_paciente(Listapacientes *p)
             opcao_documento = LeOpcao(OPCAO1, '2');
             if (opcao_documento == OPCAO1)
             {
-                do
-                {
-                    printf("Digite o CPF do paciente (XXX.YYY.ZZZ-SS): ");
-                    scanf(" %[^\n]s", p->pacientes->documento.cpf);
-                    LimpaBuffer();
-                    if (strlen(p->pacientes->documento.cpf) != 14)
-                        printf("Erro: entrada invalida. Digite um CPF válido.\n");
-                } while (strlen(p->pacientes->documento.cpf) != 14);
+                char cpf[15];
+                lerCPF(cpf);
+                strcpy(p->pacientes->documento.cpf, cpf);
             }
             else if (opcao_documento == OPCAO2)
             {
-                do
-                {
-                    printf("Digite o RG do paciente (XXX.YYY.ZZZ): ");
-                    scanf(" %[^\n]s", p->pacientes->documento.rg);
-                    LimpaBuffer();
-                    if (strlen(p->pacientes->documento.rg) != 11)
-                        printf("Erro: entrada invalida. Digite um RG válido.\n");
-                } while (strlen(p->pacientes->documento.rg) != 11);
+                char rg[12];
+                lerRG(rg);
+                strcpy(p->pacientes->documento.rg, rg);
             }
             break;
         default:

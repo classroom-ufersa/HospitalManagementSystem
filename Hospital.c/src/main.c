@@ -30,13 +30,13 @@ int main(void)
         printf("[7] Consultar quantidade de pacientes\n");
         printf("[8] Sair\n");
         printf("========================================\n");
-        controle = LeOpcao(OPCAO1,'8');
+        controle = LeOpcao(OPCAO1, '8');
         system("cls");
         switch (controle)
         {
         case OPCAO1:
             printf("Voce quer mesmo cadastrar um paciente? 1-(Sim) 2-(Nao)\n");
-            volta = LeOpcao(OPCAO1,'2');
+            volta = LeOpcao(OPCAO1, '2');
             if (volta == OPCAO1)
             {
                 HealCare = cadastra_paciente(HealCare, &quantidade);
@@ -49,7 +49,7 @@ int main(void)
             break;
         case OPCAO2:
             printf("Voce quer mesmo excluir um paciente? 1-(Sim) 2-(Nao)\n");
-            volta = LeOpcao(OPCAO1,'2');
+            volta = LeOpcao(OPCAO1, '2');
             if (volta == OPCAO1)
             {
                 printf("Insira o nome do paciente que deseja excluir: ");
@@ -59,13 +59,14 @@ int main(void)
                 pacientetemp = busca_paciente(HealCare->lista, nome);
                 if (pacientetemp != NULL)
                 {
-                    excluir_paciente(pacientetemp, HealCare);
+                    excluir_paciente(pacientetemp, HealCare, &quantidade);
                     add_arquivo(HealCare, caminho);
                 }
                 else
                 {
                     printf("O paciente nao esta cadastrado!\n\n");
                 }
+                free(pacientetemp);
             }
             else
             {
@@ -74,7 +75,7 @@ int main(void)
             break;
         case OPCAO3:
             printf("Voce quer mesmo listar os pacientes? 1-(Sim) 2-(Nao)\n");
-            volta = LeOpcao(OPCAO1,'2');
+            volta = LeOpcao(OPCAO1, '2');
             if (volta == OPCAO1)
             {
                 printf("\n");
@@ -87,7 +88,7 @@ int main(void)
             break;
         case OPCAO4:
             printf("Voce quer mesmo buscar um paciente? 1-(Sim) 2-(Nao)\n");
-            volta = LeOpcao(OPCAO1,'2');
+            volta = LeOpcao(OPCAO1, '2');
             if (volta == OPCAO1)
             {
                 printf("Insira o nome do paciente que deseja buscar: ");
@@ -114,6 +115,7 @@ int main(void)
                 {
                     printf("O paciente nao esta cadastrado!\n\n");
                 }
+                free(pacientetemp);
             }
             else
             {
@@ -122,7 +124,7 @@ int main(void)
             break;
         case OPCAO5:
             printf("Voce quer mesmo editar um paciente? 1-(Sim) 2-(Nao)\n");
-            volta = LeOpcao(OPCAO1,'2');
+            volta = LeOpcao(OPCAO1, '2');
             if (volta == OPCAO1)
             {
                 printf("Insira o nome do paciente que deseja editar: ");
@@ -139,6 +141,7 @@ int main(void)
                 {
                     printf("O paciente nao esta cadastrado!\n\n");
                 }
+                free(pacientetemp);
             }
             else
             {
@@ -147,7 +150,7 @@ int main(void)
             break;
         case OPCAO6:
             printf("Voce quer mesmo ver o total de leitos disponiveis? 1-(Sim) 2-(Nao)\n");
-            volta = LeOpcao(OPCAO1,'2');
+            volta = LeOpcao(OPCAO1, '2');
             if (volta == OPCAO1)
             {
                 if (HealCare->leitos > 0)
@@ -162,7 +165,7 @@ int main(void)
             break;
         case OPCAO7:
             printf("Voce quer mesmo ver o total de pacientes cadastrados? 1-(Sim) 2-(Nao)\n");
-            volta = LeOpcao(OPCAO1,'2');
+            volta = LeOpcao(OPCAO1, '2');
             if (volta == OPCAO1)
             {
                 if (quantidade > 0)
@@ -181,7 +184,7 @@ int main(void)
             break;
         case OPCAO8:
             printf("Voce quer mesmo sair do programa? 1-(Sim) 2-(Nao)\n");
-            volta = LeOpcao(OPCAO1,'2');
+            volta = LeOpcao(OPCAO1, '2');
             if (volta == OPCAO1)
             {
                 printf("Obrigado por utilizar meu programa!\n");
@@ -197,7 +200,6 @@ int main(void)
             break;
         }
     }
-    free(pacientetemp);
     lista_libera(HealCare->lista);
     free(HealCare);
     return 0;

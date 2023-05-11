@@ -17,29 +17,15 @@
 #define OPCAO7 '7'
 #define OPCAO8 '8'
 
-/****
- * Função: LimpaBuffer()
- * Descrição: Lê e descarta caracteres encontrados na entrada
- * Parâmetros: Nenhum
- * Retorno: Nada
- ****/
 void LimpaBuffer(void)
 {
-    int valorLido; /* valorLido deve ser int! */
+    int valorLido;
     do
     {
         valorLido = getchar();
     } while ((valorLido != '\n') && (valorLido != EOF));
 }
 
-/****
- * Função: LeOpcao()
- * Descrição: Lê e valida a opção digitada pelo usuário
- * Parâmetros:
- *   menorValor (entrada): o menor valor válido
- *   maiorValor (entrada): o maior valor válido
- * Retorno: A opção lida é validada
- ****/
 int LeOpcao(int menorValor, int maiorValor)
 {
     int op;
@@ -66,17 +52,15 @@ int LeOpcao(int menorValor, int maiorValor)
 
 void corrige_nome(char nome[])
 {
-    // Verificar se o nome contém apenas letras e espaços
     int tamanho_do_nome = strlen(nome);
     int i, j;
     char ultimo_caractere = ' ';
 
-    // verificando se possui apenas letras e espaços
+
     for (i = 0, j = 0; i < tamanho_do_nome; i++)
     {
         if (isalpha(nome[i]) || nome[i] == ' ')
         {
-            // Remover dois espaços consecutivos
             if (nome[i] == ' ' && ultimo_caractere == ' ')
             {
                 continue;
@@ -87,13 +71,10 @@ void corrige_nome(char nome[])
         }
     }
     nome[j] = '\0';
-
-    nome[0] = toupper(nome[0]); // convertendo o primeiro caractere para maiúsculo
-    // Percorra os caracteres restantes e convertendo para minúsculo
+    nome[0] = toupper(nome[0]);
     for (i = 1; i < j; i++)
     {
         nome[i] = tolower(nome[i]);
-        // Verificando se o caractere anterior é um espaço em branco. Se sim, converte o caractere atual para maiúsculo
         if (nome[i - 1] == ' ')
         {
             nome[i] = toupper(nome[i]);
@@ -104,4 +85,84 @@ void corrige_nome(char nome[])
     {
         nome[tamanho_do_nome] = '\0';
     }
+}
+
+int validarCPF(const char *cpf)
+{
+
+    if (strlen(cpf) != 14)
+    {
+        return 1;
+    }
+
+    for (int i = 0; i < 14; i++)
+    {
+        if (i != 3 && i != 7 && i != 11)
+        {
+            if (!isdigit(cpf[i]))
+            {
+                return 1;
+            }
+        }
+    }
+
+    if (cpf[3] != '.' || cpf[7] != '.' || cpf[11] != '-')
+    {
+        return 1;
+    }
+
+    return 0;
+}
+
+int validarRG(const char *rg)
+{
+    if (strlen(rg) != 11)
+    {
+        return 1;
+    }
+
+    for (int i = 0; i < 11; i++)
+    {
+        if (i != 3 && i != 7)
+        {
+            if (!isdigit(rg[i]))
+            {
+                return 1;
+            }
+        }
+    }
+
+    if (rg[3] != '.' || rg[7] != '.')
+    {
+        return 1;
+    }
+    return 0;
+}
+
+void lerCPF(char cpf[])
+{
+    do
+    {
+        printf("Digite o CPF do paciente (XXX.YYY.ZZZ-SS): ");
+        scanf(" %[^\n]", cpf);
+        LimpaBuffer();
+        if (validarCPF(cpf))
+        {
+            printf("Erro: digite um CPF valido.\n");
+        }
+    } while (validarCPF(cpf));
+}
+
+void lerRG(char rg[])
+{
+    do
+    {
+        printf("Digite o RG do paciente (XXX.YYY.ZZZ): ");
+        scanf(" %[^\n]", rg);
+        LimpaBuffer();
+        if (validarRG(rg))
+        {
+            printf("Erro: digite um RG valido.\n");
+        }
+    } while (validarRG(rg));
 }
