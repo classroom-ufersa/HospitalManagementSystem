@@ -10,7 +10,7 @@
   
 ### Problemática
 
-Criar um sistema é responsável por gerir pacientes de um hospital dando ao usuário uma grande diversidade de opções para realizar o cadastro.
+Criar um sistema responsável por gerir pacientes de um hospital dando ao usuário uma grande diversidade de opções para realizar o cadastro.
 
 ### Introdução
 
@@ -52,7 +52,7 @@ O projeto foi feito utilizando arquivos, listas duplamente encadeadas, alocaçã
   
 - Lista duplamente encadeadas:
 
-  - Como o nome já sugere, é uma lista como as outras. A grande diferença é que agora podemos percorrer a lista nos dois sentidos, ajudando a acessar diversas posições da nossa lista. Isso ocorré porque nessa lista existem dois ponteiros. O primeiro aponta para o próximo elemento da lista, enquanto o segundo ponteiro aponta para o elemento anterior. No nosso sistema, nós usamos a lista duplamente encadeada para conseguir acessar os pacientes armazenados no arquivo.
+  - Como o nome já sugere, é uma lista como as outras. A grande diferença é que agora podemos percorrer a lista nos dois sentidos, ajudando a acessar diversas posições da nossa lista. Isso ocorre porque nessa lista existem dois ponteiros. O primeiro aponta para o próximo elemento da lista, enquanto o segundo ponteiro aponta para o elemento anterior. No nosso sistema, nós usamos a lista duplamente encadeada para conseguir acessar os pacientes armazenados no arquivo.
 
 - Alocação dinamica:
   
