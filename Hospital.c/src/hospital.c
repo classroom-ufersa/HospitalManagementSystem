@@ -1,8 +1,6 @@
 #include "paciente.c"
 #include "C:\Users\jhoan\Desktop\VScode\GitHub\HospitalManagementSystem\Hospital.c\include\hospital.h"
 
-#define MaxNome 100
-#define Leitos 25
 #define codigohospital 77
 
 struct hospital
@@ -92,13 +90,11 @@ void ler_arquivo(Hospital *h, char *caminho, int *num_pacientes)
         {
             sscanf(linha, "CPF: %s", paciente.documento.cpf);
             fgets(linha, 100, arquivo);
-            sscanf(linha, "RG: %s", paciente.documento.rg);
         }
         else
         {
             sscanf(linha, "RG: %s", paciente.documento.rg);
             fgets(linha, 100, arquivo);
-            sscanf(linha, "CPF: %s", paciente.documento.cpf);
         }
         h->lista = lista_add(h->lista, paciente);
         i++;
@@ -116,14 +112,13 @@ Hospital *excluir_paciente(Listapacientes *p, Hospital *h, int *quantidade)
     }
     else
     {
-
         if (h->lista == p) 
         {
             h->lista = p->next;
         }
         else
         {
-            p->prev->next = p->next; 
+            p->prev->next = p->next;
         }
         if (p->next != NULL)
         {
