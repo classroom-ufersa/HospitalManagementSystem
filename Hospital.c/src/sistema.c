@@ -53,7 +53,6 @@ void corrige_nome(char nome[])
     int i, j;
     char ultimo_caractere = ' ';
 
-
     for (i = 0, j = 0; i < tamanho_do_nome; i++)
     {
         if (isalpha(nome[i]) || nome[i] == ' ')
@@ -86,7 +85,6 @@ void corrige_nome(char nome[])
 
 int validarCPF(const char *cpf)
 {
-
     if (strlen(cpf) != 14)
     {
         return 1;
