@@ -29,11 +29,13 @@ void LimpaBuffer(void)
 int LeOpcao(int menorValor, int maiorValor)
 {
     int op;
+    char entrada[50];
     while (1)
     {
         printf("Digite sua opcao: ");
-        op = getchar();
-        if (op >= menorValor && op <= maiorValor)
+        scanf(" %[^\n]", entrada);
+        op = entrada[0];
+        if (op >= menorValor && op <= maiorValor && strlen(entrada) == 1)
         {
             LimpaBuffer();
             Beep(1200, 300);
@@ -41,9 +43,7 @@ int LeOpcao(int menorValor, int maiorValor)
         }
         else
         {
-            printf("\nOpcao invalida. Tente novamente.");
-            printf("\nA opcao deve estar entre %c e %c. \n",
-                   menorValor, maiorValor);
+            printf("Opcao invalida. A opcao deve estar entre %c e %c. \n", menorValor, maiorValor);
             LimpaBuffer();
         }
     }

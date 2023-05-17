@@ -17,7 +17,7 @@ int main(void)
     Hospital *HealCare = hospital_cria();
     ler_arquivo(HealCare, caminho, &quantidade);
     dados_hospital(HealCare);
-    while (controle != OPCAO8) // vai repetir ate o usuario digitar 8
+    while (controle != OPCAO8)
     {
         printf("Menu:\n");
         printf("========================================\n");
