@@ -36,7 +36,7 @@ Pacientes paciente_preenche(void)
 {
     Pacientes paciente;
     char opcao_documento;
-    // Ler o nome do paciente
+
     printf("Digite o nome do paciente: ");
     scanf(" %[^\n]", paciente.nome);
     LimpaBuffer();
