@@ -197,7 +197,6 @@ int main(void)
             break;
         }
     }
-    free(pacientetemp);
     lista_libera(HealCare->lista);
     free(HealCare);
     return 0;
