@@ -7,7 +7,7 @@ int main(void)
     char nome[MaxNome];
     Listapacientes *pacientetemp = (Listapacientes *)malloc(sizeof(Listapacientes));
     FILE *arquivo;
-    char caminho[] = "C:\\Users\\jhoan\\Desktop\\VScode\\GitHub\\HospitalManagementSystem\\Hospital.c\\data\\pacientes.txt"; // caminho do arquivo txt(Varia de pc para pc)
+    char caminho[] = "../data/pacientes.txt";
     arquivo = fopen(caminho, "r");                                                                                           // abrindo arquivo
     if (arquivo == NULL)
     {
@@ -31,7 +31,6 @@ int main(void)
         printf("[8] Sair\n");
         printf("========================================\n");
         controle = LeOpcao(OPCAO1, '8');
-        system("cls");
         switch (controle)
         {
         case OPCAO1:

@@ -1,5 +1,5 @@
 #include "sistema.c"
-#include "C:\Users\jhoan\Desktop\VScode\GitHub\HospitalManagementSystem\Hospital.c\include\paciente.h"
+#include "../include/paciente.h"
 
 #define MaxNome 100
 #define Leitos 25
