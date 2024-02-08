@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include <stdarg.h>
-#include <windows.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "C:\Users\jhoan\Desktop\VScode\GitHub\HospitalManagementSystem\Hospital.c\include\hospital.h"
 
 #define N_OPCOES 8
 
@@ -38,7 +36,6 @@ int LeOpcao(int menorValor, int maiorValor)
         if (op >= menorValor && op <= maiorValor && strlen(entrada) == 1)
         {
             LimpaBuffer();
-            Beep(1200, 300);
             break;
         }
         else

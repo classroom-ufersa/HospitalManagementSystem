@@ -1,5 +1,6 @@
 #include "paciente.c"
-#include "C:\Users\jhoan\Desktop\VScode\GitHub\HospitalManagementSystem\Hospital.c\include\hospital.h"
+#include "../include/hospital.h"
+
 
 #define codigohospital 77
 
